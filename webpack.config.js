@@ -1,10 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const autoprefixer = require('autoprefixer')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
-const {WatchIgnorePlugin} = require('webpack')
-
-module.exports = (env = []) => {
+module.exports = (env = {}) => {
   return {
     entry: './src/index.tsx',
     output: {
@@ -16,7 +14,7 @@ module.exports = (env = []) => {
     mode: 'development',
 
     // Enable sourcemaps for debugging webpack's output.
-    devtool: env.includes('development') ? 'source-map' : false,
+    devtool: env.development ? 'source-map' : false,
 
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json'],
@@ -48,41 +46,30 @@ module.exports = (env = []) => {
               options: {
                 modules: {
                   localIdentName: '[hash:base64:3]--[name]--[local]',
+                  exportLocalsConvention: 'camelCase',
                 },
-                localsConvention: 'camelCase',
-              },
-            },
-            {
-              loader: 'typed-css-modules-loader',
-              options: {
-                noEmit: true,
               },
             },
             {
               loader: require.resolve('postcss-loader'),
               options: {
-                plugins: () => [
-                  require('postcss-import'),
-                  require('postcss-flexbugs-fixes'),
-                  autoprefixer({
-                    browsers: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                    flexbox: 'no-2009',
-                  }),
-                ],
+                postcssOptions: {
+                  plugins: [
+                    require('postcss-import'),
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      flexbox: 'no-2009',
+                    }),
+                  ],
+                },
               },
             },
           ],
         },
         // All files with a '.ts' or '.tsx' extension will be handled/**/ by
-        // 'awesome-typescript-loader'.
         {
           test: /\.tsx?$/,
-          loader: 'awesome-typescript-loader',
+          loader: 'ts-loader',
         },
 
         // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
@@ -110,7 +97,6 @@ module.exports = (env = []) => {
         template: 'index.html',
         hash: true,
       }),
-      new WatchIgnorePlugin([/css\.d\.ts$/]),
       // Uncomment that in order to analyze bundle size
       // new BundleAnalyzerPlugin(),
     ],

@@ -2,13 +2,7 @@
 
 The package allows you to bootstrap a React-based application, that's integrated with Zendesk App Framework(ZAF), and enables you to quickly get started with developing apps for Zendesk Sell.
 
-Note: The docs are based on [Zendesk Developer Guide](https://developer.zendesk.com/apps/docs/zendesk-apps/resources). They contain only selected and hopefully the most necessary information in terms of creating an app integrated with Zendesk Sell. If you struggles with something or there's not enough information here, please visit the actual documentation.
-
-Install Zendesk App Tools to start with Zendesk App Framework:
-
-```bash
-gem install zendesk_apps_tools
-```
+Note: The docs are based on [Zendesk Developer Guide](https://developer.zendesk.com/apps/docs/zendesk-apps/resources). They contain only selected and hopefully the most necessary information in terms of creating an app integrated with Zendesk Sell. If you struggle with something or there's not enough information here, please visit the actual documentation.
 
 # File requirements
 
@@ -62,6 +56,13 @@ Example HubSpot for Sell app manifest:
   "version": "2.0.3",
   "frameworkVersion": "2.0",
 
+  "parameters": [
+    {
+      "name": "access_token",
+      "type": "oauth"
+    }
+  ],
+
   "oauth": {
     "client_id": "{Client ID}",
     "client_secret": "{Client Secret}",
@@ -106,13 +107,13 @@ A recommended way to prevent this behaviour is to use `OAuth Authentication`. Th
 
 ## OAuth Authentication
 
-You can use OAuth2 to authenticate all your API requests to external service. OAuth provides a secure way for your application to access your account data without requiring that sensitive information
-like usernames and passwords be sent with the requests. To use OAuth authentication, you need to register your application with 3rd party service to generate OAuth credentials for your app.
+You can use OAuth2 to authenticate all your API requests to external service. OAuth provides a secure way for your application to access your account data without requiring sensitive information
+like usernames and passwords to be sent with the requests. To use OAuth authentication, you need to register your application with 3rd party service to generate OAuth credentials for your app.
 You also need to add some functionality to your application to implement an OAuth authorization flow.
 
 ### Registering the app with 3rd party service
 
-When creating an app, you'll be presented with a screen showing the settings for your new app including the app name, the description, and other app information that you should fill in.
+When registering an app, you'll be presented with a screen showing the settings for your new app including the app name, the description, and other app information that you should fill in.
 In addition, you'll also find the Auth settings for your app such as the client ID, client secret, redirect URL, as well as the scopes used by your app.
 You'll need these items when initiating an OAuth connection between your app and 3rd party service.
 
@@ -120,10 +121,10 @@ You'll need these items when initiating an OAuth connection between your app and
 - `Client secret` - Used to establish and refresh OAuth authentication.
 - `Redirect URL` - Users will be redirected to this location after granting access to your app.
   Use one of the following urls:
-  - https://oauth.zendesk.com/apps/oauth/redirect (on production)
-  - https://oauth.zendesk-staging.com/apps/oauth/redirect (on staging)
+  - https://zis.zendesk.com/api/services/zis/connections/oauth/callback (on production)
+  - https://zis.zendesk-staging.com/api/services/zis/connections/oauth/callback (on staging)
 - `Scope` - Optional security measure. Scope determines what data your app has permission to access.
-- `OAuth URL` - A user will need this URL to connect your app. The URL is based on your app's client credentials, redirect URL, and scopes configuration.
+- `OAuth URL` - A user will need this URL to connect your app. The URL is being constructed based on your app's client credentials, redirect URL, and scopes configuration.
 
 Use the `Client ID` and the `Client secret` in your application as described in this following section.
 
@@ -142,12 +143,31 @@ Update `client_id` and `client_secret` with yours.
 }
 ```
 
+You also need to add a parameter of type "oauth" to the parameters list:
+```json
+"parameters": [
+  {
+    "name": "access_token",
+    "type": "oauth"
+  }
+]
+```
+
+For more information visit the [docs](https://developer.zendesk.com/apps/docs/developer-guide/using_sdk#using-oauth)
+
 ### OAuth access token
 
-In your requests, specify the access token in an Authorization header as follows:
+In your app code, use the placeholder `{{setting.access_token}}` and a `secure: true` property to make an OAuth request.
 
-```
-Authorization: Bearer {access_token}
+```javascript
+var settings = {
+  url: 'https://www.example.com/api/user',
+  headers: {"Authorization": "Bearer {{setting.access_token}}"},
+  secure: true,
+  type: 'GET'
+};
+var client = ZAFClient.init();
+client.request(settings).then(...);
 ```
 
 ### Request Format
@@ -155,9 +175,18 @@ Authorization: Bearer {access_token}
 This is a JSON-only API. You must supply a `Content-Type: application/json` header on PUT and POST requests.
 You must set an `Accept: application/json` header on all requests.
 
+```javascript
+var settings = {
+  url: 'https://www.example.com/api/user',
+  dataType: 'json',
+  contentType: 'application/json',
+  ...
+};
+```
+
 ## Secure settings
 
-Secure settings are a other way to make settings inaccessible to agents when making AJAX requests. The setting values are only inserted in the outbound request server-side at the proxy layer.
+Secure settings are another way to make settings inaccessible to agents when making AJAX requests. The setting values are inserted only in the outbound request server-side at the proxy layer.
 See [Using secure settings](https://developer.zendesk.com/apps/docs/developer-guide/using_sdk#using-secure-settings) to set them up.
 
 # Using Zendesk Garden
@@ -172,6 +201,7 @@ Example:
 .YourElement {
   color: var(--zd-color-green-600);
   padding: var(--zd-spacing-sm);
+}
 ```
 
 For more information about the CSS classes and React components in Zendesk Garden, see [garden.zendesk.com](https://garden.zendesk.com/).
@@ -191,13 +221,13 @@ client.get('contact.email').then(function(data) {
 })
 ```
 
-# @zendesk/zaf-app-utils-for-sell
+# @zendesk/sell-zaf-app-toolbox
 
-@zendesk/zaf-app-utils-for-sell package delivers a bunch of useful methods, hooks and components that help you build React apps integrated with Zendesk Sell quicker and with less effort. They use Zendesk's App Framework Client under the hood. To find out more visit the [repository](https://github.com/zendesk/zaf-app-utils-for-sell).
+@zendesk/sell-zaf-app-toolbox package delivers a bunch of useful methods, hooks and components that help you build React apps integrated with Zendesk Sell quicker and with less effort. They use Zendesk's App Framework Client under the hood. To find out more visit the [repository](https://github.com/zendesk/sell-zaf-app-toolbox).
 
 ## Testing an app locally
 
-1. Use your command-line interface to navigate to the folder containing the app you want to test.
+1. Use your command-line interface navigate to the folder containing the app you want to test.
 
 2. Install dependencies if necessary:
 
@@ -217,9 +247,9 @@ client.get('contact.email').then(function(data) {
    npm run server
    ```
 
-5. In a browser, navigate to the product page where you specified the app to appear (eq. deal/lead/contact card) and append `?zat=true` to the URL. Example:
+5. In a browser, navigate to the product page where you specified the app to appear (eq. deal/lead/contact card) and append `?zcli_apps=true` to the URL. Example:
 
-   https://app.futuresimple.com/crm/contacts/1234?zat=true
+   https://app.futuresimple.com/crm/contacts/1234?zcli_apps=true
 
 6. In your browser's Address bar, click the shield icon on the right (Chrome) or lock icon on the left (Firefox) and agree to load an unsafe script (Chrome) or to disable protection (Firefox).
 
@@ -254,7 +284,7 @@ The command creates a new .zip file in `dist/tmp`. Now your app is ready to be i
 ## Installing a private app in Zendesk Sell
 
 1. Go to your Zendesk Sell settings.
-2. Find the `TOOLS` section and then select the `Apps` tab.
+2. Find the `Integrations` section and then select the `Apps` tab.
 3. Click the `Upload private app` button.
 4. Give your app a name and upload the latest .zip file from `dist/tmp` in your local app project.
 5. Install the app.
@@ -264,17 +294,20 @@ The command creates a new .zip file in `dist/tmp`. Now your app is ready to be i
 If your app uses OAuth or secure settings, you can keep testing it locally after installing it remotely.
 
 1. Install the app as a private app in Zendesk Sell. See [Installing a private app in Zendesk Sell](#installing-a-private-app-in-zendesk-sell)
-2. Navigate to the app's root folder in your command-line tool and start the local ZAT server with an option named app-id:
+2. Navigate to the app's root folder and create a file named `zcli.apps.config.json`
+3. Paste the content below (note: you can also modify `plan` and `paramters` keys).
 
-   ```bash
-   npm run server -- --app-id=1234
-   ```
+```json
+{
+    "plan": "silver",
+    "app_id": YOUR_APP_ID,
+    "parameters": {}
+}
+```
 
-   Though named `app-id`, specify the app's installation id, not the app id. To find it, sign in to your Zendesk Sell instance as an admin and open the following page in the same browser, replacing `your_subdomain` with your own:
+   To find app installation id, sign in to your Zendesk Sell instance as an admin and open the following page in the same browser, replacing `your_subdomain` with your own:
 
    https://your_subdomain.zendesk.com/api/sell/apps/installations.json (on production)
-
-   https://your_subdomain.zendesk-staging.com/api/sell/apps/installations.json (on staging)
 
    Locate your installed app and note its `id` value, not its `app_id` value.
 
