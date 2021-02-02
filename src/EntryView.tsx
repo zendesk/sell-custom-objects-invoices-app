@@ -4,7 +4,7 @@ import {
   ResponseHandler,
   useSellContactEmail,
 } from '@zendesk/sell-zaf-app-toolbox'
-import {Row, Col, Grid} from '@zendeskgarden/react-grid'
+import {Row, Grid} from '@zendeskgarden/react-grid'
 
 import Loader from './components/Loader'
 import EmptyState from './components/EmptyState'
