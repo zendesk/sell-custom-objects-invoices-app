@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 
@@ -18,29 +17,21 @@ declare var ZAFClient: {
   init: () => Client
 }
 
+const Form = () => {
+  return (
+    <div>This is form</div>
+  )
+}
+
 const App = () => {
   const client = useMemo(() => ZAFClient.init(), [])
   return (
     <ZAFClientContextProvider value={client}>
       <ThemeProvider>
         <Router>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/users">Users</Link>
-              </li>
-            </ul>
-          </nav>
           <Switch>
-            <Route path="/">
-              <EntryView />
-            </Route>
-            <Route path="/users">
-              <div>Janek</div>
-            </Route>
+            <Route exact path="/new" component={Form} />
+            <Route component={EntryView} />
           </Switch>
         </Router>
       </ThemeProvider>
