@@ -37,17 +37,17 @@ const invoiceTypeSchema = {
           type: 'string',
           description: 'Invoice number',
         },
-        invoice_date: {
+        issue_date: {
           type: 'string',
           description: 'Invoice date',
         },
-        date_due: {
+        due_date: {
           type: 'string',
           description: 'Date due',
         },
-        amount: {
+        due_amount: {
           type: 'number',
-          description: 'Amount',
+          description: 'Due amount',
         },
         is_paid: {
           type: 'boolean',
@@ -56,9 +56,9 @@ const invoiceTypeSchema = {
       },
       required: [
         'invoice_number',
-        'invoice_date',
-        'date_due',
-        'amount',
+        'issue_date',
+        'due_date',
+        'due_amount',
         'is_paid',
       ],
     },
