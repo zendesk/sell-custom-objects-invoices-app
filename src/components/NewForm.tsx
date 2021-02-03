@@ -13,34 +13,35 @@ const NewForm = () => {
   useClientHeight(400)
   const client = useContext(ZAFClientContext)
 
-  const [invoiceNumber, setInvoiceNumber] = useState('')
-  const [date, setDate] = useState(new Date())
-  const [dueDate, setDueDate] = useState(new Date())
-  const [amount, setAmount] = useState('')
-  const [isPaid, setIsPaid] = useState(false)
+  const [attributes, setAttributes] = useState({
+    number: '',
+    date: new Date(),
+    dueDate: new Date(),
+    amount: '',
+    isPaid: false,
+  })
 
   const handleSubmit = (event: any) => {
-    createInvoice(
-      client,
-      invoiceNumber,
-      date,
-      dueDate,
-      amount,
-      isPaid,
-    ).then((response: any) =>
+    createInvoice(client, attributes).then((response: any) =>
       createRelation(client, 19616494, response.data.id),
     )
     event.preventDefault()
   }
 
   const handleInvoiceNumber = (event: {target: {value: string}}) =>
-    setInvoiceNumber(event.target.value)
+    setAttributes({...attributes, number: event.target.value})
+
   const handleInvoiceAmount = (event: {target: {value: string}}) =>
-    setAmount(event.target.value)
-  const handleInvoiceDate = (invoiceDate: Date) => setDate(invoiceDate)
+    setAttributes({...attributes, amount: event.target.value})
+
+  const handleInvoiceDate = (invoiceDate: Date) =>
+    setAttributes({...attributes, date: invoiceDate})
+
   const handleInvoiceDueDate = (invoiceDueDate: Date) =>
-    setDueDate(invoiceDueDate)
-  const handleInvoiceIsPaid = () => setIsPaid(!isPaid)
+    setAttributes({...attributes, dueDate: invoiceDueDate})
+
+  const handleInvoiceIsPaid = () =>
+    setAttributes({...attributes, isPaid: !attributes.isPaid})
 
   return (
     <form onSubmit={handleSubmit}>
@@ -48,30 +49,36 @@ const NewForm = () => {
         <Col sm={5}>
           <Field>
             <Label>Invoice number</Label>
-            <Input value={invoiceNumber} onChange={handleInvoiceNumber} />
+            <Input value={attributes.number} onChange={handleInvoiceNumber} />
           </Field>
           <Field>
             <Label>Invoice date</Label>
-            <Datepicker value={date} onChange={handleInvoiceDate}>
+            <Datepicker value={attributes.date} onChange={handleInvoiceDate}>
               <Input />
             </Datepicker>
           </Field>
           <Field>
             <Label>Due date</Label>
-            <Datepicker value={dueDate} onChange={handleInvoiceDueDate}>
+            <Datepicker
+              value={attributes.dueDate}
+              onChange={handleInvoiceDueDate}
+            >
               <Input />
             </Datepicker>
           </Field>
           <Field>
             <Label>Amount</Label>
             <Input
-              value={amount}
+              value={attributes.amount}
               type="number"
               onChange={handleInvoiceAmount}
             />
           </Field>
           <Field>
-            <Checkbox checked={isPaid} onChange={handleInvoiceIsPaid}>
+            <Checkbox
+              checked={attributes.isPaid}
+              onChange={handleInvoiceIsPaid}
+            >
               <Label>Is paid</Label>
             </Checkbox>
           </Field>
