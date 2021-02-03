@@ -7,7 +7,19 @@ import {useContext, useState} from 'react'
 import {useClientHeight, ZAFClientContext} from '@zendesk/sell-zaf-app-toolbox'
 import {Link} from 'react-router-dom'
 
-import {createInvoice, createRelation} from '../providers/sunshineProvider'
+import {
+  createInvoice,
+  createRelation,
+  InvoiceResponse,
+} from '../providers/sunshineProvider'
+
+export interface NewFormAttributes {
+  invoiceNumber: string
+  issueDate: Date
+  dueDate: Date
+  dueAmount: string
+  isPaid: boolean
+}
 
 const NewForm = () => {
   useClientHeight(400)
@@ -22,7 +34,7 @@ const NewForm = () => {
   })
 
   const handleSubmit = (event: any) => {
-    createInvoice(client, attributes).then((response: any) =>
+    createInvoice(client, attributes).then((response: InvoiceResponse) =>
       createRelation(client, 19616494, response.data.id),
     )
     event.preventDefault()

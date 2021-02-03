@@ -1,15 +1,30 @@
+import {NewFormAttributes} from '../components/NewForm'
+
 const OBJECT_TYPE = 'invoice'
 const RELATION_TYPE = 'deal_invoice'
 
-interface InvoiceAttributes {
-  invoiceNumber: string
-  issueDate: Date
-  dueDate: Date
-  dueAmount: string
-  isPaid: boolean
+export interface InvoiceResponse {
+  data: InvoiceData
 }
 
-export const createInvoice = (client: any, attributes: InvoiceAttributes) => {
+export interface InvoiceData {
+  type: string
+  id: string
+  external_id: any
+  attributes: InvoiceAttributes
+  created_at: string
+  updated_at: string
+}
+
+export interface InvoiceAttributes {
+  invoice_number: string
+  issue_date: string
+  due_date: string
+  due_amount: number
+  is_paid: boolean
+}
+
+export const createInvoice = (client: any, attributes: NewFormAttributes) => {
   const body = {
     data: {
       type: OBJECT_TYPE,
