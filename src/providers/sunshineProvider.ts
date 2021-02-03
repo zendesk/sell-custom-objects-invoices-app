@@ -1,15 +1,23 @@
 const OBJECT_TYPE = 'invoice'
 const RELATION_TYPE = 'deal_invoice'
 
-export const createInvoice = (client: any, attributes: any) => {
+interface InvoiceAttributes {
+  invoiceNumber: string
+  issueDate: Date
+  dueDate: Date
+  dueAmount: string
+  isPaid: boolean
+}
+
+export const createInvoice = (client: any, attributes: InvoiceAttributes) => {
   const body = {
     data: {
       type: OBJECT_TYPE,
       attributes: {
-        invoice_number: attributes.number,
-        invoice_date: attributes.date,
-        date_due: attributes.dueDate,
-        amount: parseFloat(attributes.amount),
+        invoice_number: attributes.invoiceNumber,
+        issue_date: attributes.issueDate,
+        due_date: attributes.dueDate,
+        due_amount: parseFloat(attributes.dueAmount),
         is_paid: attributes.isPaid,
       },
     },
