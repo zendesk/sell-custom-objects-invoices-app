@@ -12,7 +12,7 @@ import EmptyState from './components/EmptyState'
 import css from './App.css'
 
 export const EntryView = () => {
-  useClientHeight(230)
+  useClientHeight(400)
   const contactEmailResponse = useSellContactEmail()
 
   return (
