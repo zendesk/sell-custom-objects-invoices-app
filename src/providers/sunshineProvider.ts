@@ -6,7 +6,6 @@ const RELATION_TYPE = 'deal_invoice'
 export interface InvoiceResponse {
   data: InvoiceData
 }
-
 export interface InvoiceData {
   type: string
   id: string

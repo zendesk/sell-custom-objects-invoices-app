@@ -31,7 +31,9 @@
     "@zendeskgarden/react-forms": "^8.31.0",
     "@zendeskgarden/react-grid": "^8.28.2",
     "@zendeskgarden/react-loaders": "^8.28.2",
+    "@zendeskgarden/react-tables": "^8.31.0",
     "@zendeskgarden/react-theming": "^8.28.2",
+    "@zendeskgarden/react-typography": "^8.31.0",
     "@zendeskgarden/svg-icons": "^6.27.0",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.1"
