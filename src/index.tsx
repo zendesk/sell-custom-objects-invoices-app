@@ -7,7 +7,7 @@ import {ZAFClientContextProvider, Client} from '@zendesk/sell-zaf-app-toolbox'
 import {ThemeProvider} from '@zendeskgarden/react-theming'
 
 import EntryView from './EntryView'
-import NewForm from './components/NewForm'
+import NewFormView from './components/NewFormView'
 
 declare var ZAFClient: {
   init: () => Client
@@ -20,7 +20,7 @@ const App = () => {
       <ThemeProvider>
         <Router>
           <Switch>
-            <Route exact path="/new" component={NewForm} />
+            <Route exact path="/new" component={NewFormView} />
             <Route component={EntryView} />
           </Switch>
         </Router>
