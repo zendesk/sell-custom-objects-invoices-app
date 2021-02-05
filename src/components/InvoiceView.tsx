@@ -44,9 +44,9 @@ const InvoiceItem = ({invoiceData}: {invoiceData: InvoiceData}) => {
           </Cell>
           <Cell>
             {attributes.is_paid ? (
-              <Code hue="red">Not paid</Code>
-            ) : (
               <Code hue="green">Paid</Code>
+            ) : (
+              <Code hue="red">Not Paid</Code>
             )}
           </Cell>
         </Row>

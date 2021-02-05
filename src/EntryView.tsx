@@ -11,7 +11,7 @@ import InvoiceView from './components/InvoiceView'
 import css from './App.css'
 
 export const EntryView = () => {
-  useClientHeight(400)
+  useClientHeight(250)
   const dealIdResponse = useClientGet('deal.id')
 
   return (

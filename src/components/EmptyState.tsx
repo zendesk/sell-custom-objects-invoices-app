@@ -14,7 +14,7 @@ const EmptyState = () => {
       </Row>
       <Row justifyContent="center" className={css.contentView}>
         <Link to="/new">
-          <Button>Create</Button>
+          <Button>Add Invoice</Button>
         </Link>
       </Row>
     </Col>
