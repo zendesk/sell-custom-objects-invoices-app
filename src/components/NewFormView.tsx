@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {withRouter} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {
   ResponseHandler,
   useClientGet,
@@ -16,8 +16,9 @@ import {
 import Loader from './Loader'
 import NewForm, {NewFormAttributes} from './NewForm'
 
-const NewFormView = withRouter(({history}) => {
+const NewFormView = () => {
   useClientHeight(400)
+  const history = useHistory()
   const dealIdResponse = useClientGet('deal.id')
   const client = useContext(ZAFClientContext)
 
@@ -41,6 +42,6 @@ const NewFormView = withRouter(({history}) => {
       )}
     </ResponseHandler>
   )
-})
+}
 
 export default NewFormView

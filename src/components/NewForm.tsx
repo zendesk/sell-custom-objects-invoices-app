@@ -81,7 +81,11 @@ const NewForm = ({
             />
           </Field>
           <Field>
-            <Checkbox data-test-id="invoice-is-paid" checked={attributes.isPaid} onChange={handleIsPaid}>
+            <Checkbox
+              data-test-id="invoice-is-paid"
+              checked={attributes.isPaid}
+              onChange={handleIsPaid}
+            >
               <Label>Is paid</Label>
             </Checkbox>
           </Field>
@@ -91,7 +95,9 @@ const NewForm = ({
         <Link to="/">
           <Button isDanger>Cancel</Button>
         </Link>
-        <Button data-test-id="invoice-create" onClick={handleSubmit}>Create</Button>
+        <Button data-test-id="invoice-create" onClick={handleSubmit}>
+          Create
+        </Button>
       </Row>
     </Grid>
   )
