@@ -54,6 +54,7 @@ const NewForm = ({
           <Field>
             <Label>Invoice number</Label>
             <Input
+              data-test-id="invoice-number"
               value={attributes.invoiceNumber}
               onChange={handleInvoiceNumber}
             />
@@ -61,25 +62,26 @@ const NewForm = ({
           <Field>
             <Label>Issue date</Label>
             <Datepicker value={attributes.issueDate} onChange={handleIssueDate}>
-              <Input />
+              <Input data-test-id="invoice-issue-date" />
             </Datepicker>
           </Field>
           <Field>
             <Label>Due date</Label>
             <Datepicker value={attributes.dueDate} onChange={handleDueDate}>
-              <Input />
+              <Input data-test-id="invoice-due-date" />
             </Datepicker>
           </Field>
           <Field>
             <Label>Due amount</Label>
             <Input
+              data-test-id="invoice-due-amount"
               value={attributes.dueAmount}
               type="number"
               onChange={handleDueAmount}
             />
           </Field>
           <Field>
-            <Checkbox checked={attributes.isPaid} onChange={handleIsPaid}>
+            <Checkbox data-test-id="invoice-is-paid" checked={attributes.isPaid} onChange={handleIsPaid}>
               <Label>Is paid</Label>
             </Checkbox>
           </Field>
@@ -89,7 +91,7 @@ const NewForm = ({
         <Link to="/">
           <Button isDanger>Cancel</Button>
         </Link>
-        <Button onClick={handleSubmit}>Create</Button>
+        <Button data-test-id="invoice-create" onClick={handleSubmit}>Create</Button>
       </Row>
     </Grid>
   )
