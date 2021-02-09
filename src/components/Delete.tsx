@@ -22,8 +22,14 @@ const Delete = ({
         <LG>Do you want to remove Invoice?</LG>
       </Row>
       <Row>
-        <Button onClick={onCancel}>Cancel</Button>
-        <Button isDanger onClick={handleDelete}>
+        <Button data-test-id="invoice-delete-cancel" onClick={onCancel}>
+          Cancel
+        </Button>
+        <Button
+          isDanger
+          data-test-id="invoice-delete-confirm"
+          onClick={handleDelete}
+        >
           Delete
         </Button>
       </Row>

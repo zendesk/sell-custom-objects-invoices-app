@@ -40,8 +40,12 @@ const InvoiceDetails = ({
               </IconButton>
             </Trigger>
             <Menu>
-              <Item value="edit">Edit</Item>
-              <Item value="delete">Delete</Item>
+              <Item value="edit" data-test-id="invoice-edit">
+                Edit
+              </Item>
+              <Item value="delete" data-test-id="invoice-delete">
+                Delete
+              </Item>
             </Menu>
           </Dropdown>
         </Col>
