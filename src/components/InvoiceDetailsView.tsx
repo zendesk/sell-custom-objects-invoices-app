@@ -11,6 +11,8 @@ const InvoiceDetailsView = ({dealId}: {dealId: string}) => {
     `/api/sunshine/objects/records/zen:deal:${dealId}/related/deal_invoice`,
   )
 
+  const handleEdit = () => console.log('>>> EDIT')
+  const handleDelete = () => console.log('>>> DELETE')
   const isRelationEmpty = (response: any) => response.data.data.length === 0
 
   return (
@@ -22,7 +24,11 @@ const InvoiceDetailsView = ({dealId}: {dealId: string}) => {
       isEmpty={isRelationEmpty}
     >
       {([response]: [InvoiceResponse]) => (
-        <InvoiceDetails invoice={response.data[0]} />
+        <InvoiceDetails
+          invoice={response.data[0]}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
       )}
     </ResponseHandler>
   )
