@@ -1,6 +1,13 @@
 import * as React from 'react'
-import {ResponseHandler, useClientRequest} from '@zendesk/sell-zaf-app-toolbox'
+import {
+  ResponseHandler,
+  useClientRequest,
+  ZAFClientContext,
+} from '@zendesk/sell-zaf-app-toolbox'
 import {useHistory} from 'react-router-dom'
+import {useContext} from 'react'
+
+import {deleteRelation, deleteObject} from '../providers/sunshineProvider'
 
 import {
   RELATION_TYPE,
@@ -10,13 +17,18 @@ import Loader from './Loader'
 import Delete from './Delete'
 
 const DeleteView = () => {
+  const client = useContext(ZAFClientContext)
   const history = useHistory()
   const sunshineResponse = useClientRequest(
     `/api/sunshine/relationships/records?type=${RELATION_TYPE}`,
   )
 
-  const handleDelete = () => console.log('>> DELETE')
   const handleCancel = () => history.push('/')
+  const handleDelete = (relationId: string, invoiceId: string) => {
+    deleteRelation(client, relationId).then(() => {
+      deleteObject(client, invoiceId).then(() => history.push('/'))
+    })
+  }
 
   return (
     <ResponseHandler

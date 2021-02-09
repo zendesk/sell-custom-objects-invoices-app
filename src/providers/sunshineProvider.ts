@@ -83,3 +83,17 @@ export const createRelation = (
     data: JSON.stringify(data),
   })
 }
+
+export const deleteRelation = (client: any, relationId: string) => {
+  return client?.request({
+    url: `/api/sunshine/relationships/records/${relationId}`,
+    method: 'DELETE',
+  })
+}
+
+export const deleteObject = (client: any, objectId: string) => {
+  return client?.request({
+    url: `/api/sunshine/objects/records/${objectId}`,
+    method: 'DELETE',
+  })
+}

@@ -14,6 +14,8 @@ const Delete = ({
   onCancel: any
   onDelete: any
 }) => {
+  const handleDelete = () => onDelete(relation.id, relation.target)
+
   return (
     <Grid>
       <Row>
@@ -21,10 +23,9 @@ const Delete = ({
       </Row>
       <Row>
         <Button onClick={onCancel}>Cancel</Button>
-        <Button isDanger onClick={onDelete}>
+        <Button isDanger onClick={handleDelete}>
           Delete
         </Button>
-        {/*<pre>{JSON.stringify(relation, null, 2)}</pre>*/}
       </Row>
     </Grid>
   )

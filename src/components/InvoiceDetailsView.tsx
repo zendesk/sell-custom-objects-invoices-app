@@ -16,6 +16,7 @@ const InvoiceDetailsView = ({dealId}: {dealId: string}) => {
 
   const handleEdit = () => console.log('>>> EDIT')
   const handleDelete = () => history.push('/delete')
+
   const isRelationEmpty = (response: any) => response.data.data.length === 0
 
   return (
