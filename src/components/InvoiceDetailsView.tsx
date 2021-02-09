@@ -1,18 +1,21 @@
 import * as React from 'react'
 import {ResponseHandler, useClientRequest} from '@zendesk/sell-zaf-app-toolbox'
 
+import {useHistory} from 'react-router-dom'
+
 import Loader from './Loader'
 import EmptyState from './EmptyState'
 import {InvoiceResponse} from '../providers/sunshineProvider'
 import InvoiceDetails from './InvoiceDetails'
 
 const InvoiceDetailsView = ({dealId}: {dealId: string}) => {
+  const history = useHistory()
   const sunshineResponse = useClientRequest(
     `/api/sunshine/objects/records/zen:deal:${dealId}/related/deal_invoice`,
   )
 
   const handleEdit = () => console.log('>>> EDIT')
-  const handleDelete = () => console.log('>>> DELETE')
+  const handleDelete = () => history.push('/delete')
   const isRelationEmpty = (response: any) => response.data.data.length === 0
 
   return (

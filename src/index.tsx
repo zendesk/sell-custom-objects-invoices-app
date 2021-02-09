@@ -8,6 +8,7 @@ import {ThemeProvider} from '@zendeskgarden/react-theming'
 
 import EntryView from './EntryView'
 import NewFormView from './components/NewFormView'
+import DeleteView from './components/DeleteView'
 
 declare var ZAFClient: {
   init: () => Client
@@ -21,6 +22,7 @@ const App = () => {
         <Router>
           <Switch>
             <Route exact path="/new" component={NewFormView} />
+            <Route exact path="/delete" component={DeleteView} />
             <Route component={EntryView} />
           </Switch>
         </Router>
