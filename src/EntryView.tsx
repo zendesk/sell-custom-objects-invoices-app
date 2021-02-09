@@ -7,7 +7,7 @@ import {
 import {Row, Grid} from '@zendeskgarden/react-grid'
 
 import Loader from './components/Loader'
-import InvoiceView from './components/InvoiceView'
+import InvoiceDetailsView from './components/InvoiceDetailsView'
 import css from './App.css'
 
 export const EntryView = () => {
@@ -23,7 +23,7 @@ export const EntryView = () => {
           errorView={<div>Something went wrong!</div>}
           emptyView={<div>There is no Deal</div>}
         >
-          {([dealId]: [string]) => <InvoiceView dealId={dealId} />}
+          {([dealId]: [string]) => <InvoiceDetailsView dealId={dealId} />}
         </ResponseHandler>
       </Row>
     </Grid>
