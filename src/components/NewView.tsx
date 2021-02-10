@@ -14,9 +14,9 @@ import {
   InvoiceResponse,
 } from '../providers/sunshineProvider'
 import Loader from './Loader'
-import NewForm, {NewFormAttributes} from './NewForm'
+import New, {NewFormAttributes} from './New'
 
-const NewFormView = () => {
+const NewView = () => {
   useClientHeight(400)
   const history = useHistory()
   const dealIdResponse = useClientGet('deal.id')
@@ -38,10 +38,10 @@ const NewFormView = () => {
       emptyView={<div>There's nothing to see yet.</div>}
     >
       {([dealId]: [number]) => (
-        <NewForm dealId={dealId} onSubmittedForm={handleSubmittedForm} />
+        <New dealId={dealId} onSubmittedForm={handleSubmittedForm} />
       )}
     </ResponseHandler>
   )
 }
 
-export default NewFormView
+export default NewView

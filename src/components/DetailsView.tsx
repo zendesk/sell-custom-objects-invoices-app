@@ -6,9 +6,9 @@ import {useHistory} from 'react-router-dom'
 import Loader from './Loader'
 import EmptyState from './EmptyState'
 import {InvoiceResponse} from '../providers/sunshineProvider'
-import InvoiceDetails from './InvoiceDetails'
+import Details from './Details'
 
-const InvoiceDetailsView = ({dealId}: {dealId: string}) => {
+const DetailsView = ({dealId}: {dealId: string}) => {
   const history = useHistory()
   const sunshineResponse = useClientRequest(
     `/api/sunshine/objects/records/zen:deal:${dealId}/related/deal_invoice`,
@@ -28,7 +28,7 @@ const InvoiceDetailsView = ({dealId}: {dealId: string}) => {
       isEmpty={isRelationEmpty}
     >
       {([response]: [InvoiceResponse]) => (
-        <InvoiceDetails
+        <Details
           invoice={response.data[0]}
           onEdit={handleEdit}
           onDelete={handleDelete}
@@ -38,4 +38,4 @@ const InvoiceDetailsView = ({dealId}: {dealId: string}) => {
   )
 }
 
-export default InvoiceDetailsView
+export default DetailsView

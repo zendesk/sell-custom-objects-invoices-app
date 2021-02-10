@@ -15,7 +15,7 @@ export interface NewFormAttributes {
   isPaid: boolean
 }
 
-const NewForm = ({
+const New = ({
   dealId,
   onSubmittedForm,
 }: {
@@ -103,4 +103,4 @@ const NewForm = ({
   )
 }
 
-export default NewForm
+export default New

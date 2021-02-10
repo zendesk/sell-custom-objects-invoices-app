@@ -9,7 +9,7 @@ import MenuIcon from '@zendeskgarden/svg-icons/src/16/menu-fill.svg'
 
 import {InvoiceData} from '../providers/sunshineProvider'
 
-const InvoiceDetails = ({
+const Details = ({
   invoice,
   onEdit,
   onDelete,
@@ -96,4 +96,4 @@ const InvoiceDetails = ({
   )
 }
 
-export default InvoiceDetails
+export default Details

@@ -1,4 +1,4 @@
-import {NewFormAttributes} from '../components/NewForm'
+import {NewFormAttributes} from '../components/New'
 
 const OBJECT_TYPE = 'invoice'
 export const RELATION_TYPE = 'deal_invoice'
