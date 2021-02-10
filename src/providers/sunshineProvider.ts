@@ -63,6 +63,31 @@ export const createInvoice = (client: any, attributes: NewFormAttributes) => {
   })
 }
 
+export const updateInvoice = (
+  client: any,
+  invoiceId: string,
+  attributes: NewFormAttributes,
+) => {
+  const body = {
+    data: {
+      attributes: {
+        invoice_number: attributes.invoiceNumber,
+        issue_date: attributes.issueDate,
+        due_date: attributes.dueDate,
+        due_amount: parseFloat(attributes.dueAmount),
+        is_paid: attributes.isPaid,
+      },
+    },
+  }
+
+  return client?.request({
+    url: `/api/sunshine/objects/records/${invoiceId}`,
+    method: 'PATCH',
+    contentType: 'application/merge-patch+json',
+    data: JSON.stringify(body),
+  })
+}
+
 export const createRelation = (
   client: any,
   dealId: number,

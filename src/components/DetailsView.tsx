@@ -14,7 +14,7 @@ const DetailsView = ({dealId}: {dealId: string}) => {
     `/api/sunshine/objects/records/zen:deal:${dealId}/related/deal_invoice`,
   )
 
-  const handleEdit = () => console.log('>>> EDIT')
+  const handleEdit = () => history.push('/edit')
   const handleDelete = () => history.push('/delete')
 
   const isRelationEmpty = (response: any) => response.data.data.length === 0
