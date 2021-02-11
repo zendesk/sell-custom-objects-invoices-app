@@ -24,7 +24,6 @@ export const EditEntryView = () => {
           emptyView={<div>There is no Deal</div>}
         >
           {([dealId]: [string]) => <EditView dealId={dealId} />}
-          {/* {([dealId]: [string]) => <pre>{dealId}</pre>} */}
         </ResponseHandler>
       </Row>
     </Grid>
