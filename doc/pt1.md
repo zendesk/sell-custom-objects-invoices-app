@@ -4,24 +4,24 @@ In this tutorial series, you'll learn how to build your first React Zendesk Sell
 
 - [Product requirements](#product-requirements)
 - [Development requirements](#development-requirements)
-<!-- - [Planning the app](#planning-the-app)
+- [Planning the app](#planning-the-app)
 - [Using the scaffold template](#using-the-scaffold-template)
 - [Installing dependencies](#installing-dependencies)
 - [Installing the Zendesk CLI](#installing-zcli)
-- [Quick app files overview](#app-files-overview) -->
+- [Quick app files overview](#app-files-overview)
 
-<!-- The other tutorials in the series teach you how to build and install the app:
+The other tutorials in the series teach you how to build and install the app:
 
 - [Part 2: Installing the app in Zendesk Sell](https://develop.zendesk.com/hc/en-us/articles/...)
-- [Part 3: OAuth 2.0 setup](https://develop.zendesk.com/hc/en-us/articles/...)
+<!-- - [Part 3: OAuth 2.0 setup](https://develop.zendesk.com/hc/en-us/articles/...)
 - [Part 4: Creating audiences in Mailchimp](https://develop.zendesk.com/hc/en-us/articles/...)
 - [Part 5: Getting data from the Mailchimp API](https://develop.zendesk.com/hc/en-us/articles/...)
 
 Because the tutorials build on each other, tackle them in order and finish each tutorial before moving on to the next one.
 
-To download the completed source code of the app in this tutorial, click [list_mailchimp_audiences_sell_app.zip](). You can review the code as you follow along or check your work.
+To download the completed source code of the app in this tutorial, click [list_mailchimp_audiences_sell_app.zip](). You can review the code as you follow along or check your work. -->
 
-**Note**: Zendesk provides this article for instructional purposes only. Zendesk does not provide support for the content. Please post any issue in the comments section below or in the [Zendesk Apps community](https://develop.zendesk.com/hc/en-us/community/topics/...), or search for a solution online. -->
+**Note**: Zendesk provides this article for instructional purposes only. Zendesk does not provide support for the content. Please post any issue in the comments section below or in the [Zendesk Apps community](https://develop.zendesk.com/hc/en-us/community/topics/...), or search for a solution online.
 
 <h3 id="product-requirements">Product requirements</h3>
 
@@ -32,20 +32,20 @@ Before we start diving into the tutorial, we need to make sure you have required
 
 <h3 id="development-requirements">Development requirements</h3>
 
+Here is a list of libraries with recommended versions that will be using for development of this tutirial app:
+
 1. nodeJS v14.15.3
 2. npm v6.14.9
 
-<!-- <h3 id="planning-the-app">Planning the app</h3>
+<h3 id="planning-the-app">Planning the app</h3>
 
-You should have a good idea of how your app will look and work before you start working on it. The app is designed to list audiences to which a Sell contact subscribes. Learn more about the [Mailchimp audiences](https://mailchimp.com/help/getting-started-audience). To be able to fetch audiences from Mailchimp we have to set up OAuth since we’re going to make requests to the Mailchimp API. The app will have a simple interface consisting a list of audiences. A single item will display an audience's name and a number of subscribers. Here's a mockup of the user interface:
+We will create a simple app on Sell deals page. It will allow users to manage invoices assigned to Sell deals:
 
-<img src="https://zen-marketing-documentation.s3.amazonaws.com/docs/en/sell_mailchimp_app.png" alt="Tutorial Mailchimp app for Zendesk Sell" width="400"/>
+1. <b>Create</b> a new invoice and connect it to the viewed deal
+2. <b>Edit</b> an invoice attached to the deal
+3. <b>Delete</b> an invoice and detach it from the deal
 
-The app will appear in the right sidebar when viewing a person card in Sell.
-
-<img src="https://zen-marketing-documentation.s3.amazonaws.com/docs/en/person_card_location.png" alt="Person card location" width="600"/>
-
-When a user opens a person card, the app will automatically make a HTTP request to the Mailchimp API for audiences related to the person. When the request finishes, the app lists audiences to which the contact subscribes.
+When a user opens a deal, the app will automatically make a HTTP GET request to the Sunshine Custome Objects API to fetch invoice related to it. If such invoice exist, it will be shown in the app and edit/delete actions will be performable on it. If an invoice related to the deal doesn't exist, a button for creating a new invoice will be shown.
 
 <h3 id="using-the-scaffold-template">Using the scaffold template</h3>
 
@@ -80,4 +80,4 @@ Open your file browser and go to the **dist/** folder. The folder contains all [
 
 The project also includes **README.md** where you can find useful information in terms of creating an app integrated with Zendesk Sell.
 
-In the next tutorial, you'll specify the app location and then install the app as private in Zendesk Sell to test if it works at this stage. You’ll also get to know how to develop the app locally. Get started: [Part 2: Installing the app in Zendesk Sell](https://develop.zendesk.com/hc/en-us/articles/...). -->
+In the next tutorial, you'll specify the app location and then install the app as private in Zendesk Sell to test if it works at this stage. You’ll also get to know how to develop the app locally. Get started: [Part 2: Installing the app in Zendesk Sell](https://develop.zendesk.com/hc/en-us/articles/...).
