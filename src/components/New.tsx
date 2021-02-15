@@ -93,7 +93,9 @@ const New = ({
       </Row>
       <Row>
         <Link to="/">
-          <Button isDanger>Cancel</Button>
+          <Button data-test-id="invoice-create-cancel" isDanger>
+            Cancel
+          </Button>
         </Link>
         <Button data-test-id="invoice-create" onClick={handleSubmit}>
           Create

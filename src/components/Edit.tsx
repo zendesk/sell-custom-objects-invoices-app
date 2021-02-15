@@ -95,7 +95,9 @@ const Edit = ({
       </Row>
       <Row>
         <Link to="/">
-          <Button isDanger>Cancel</Button>
+          <Button data-test-id="invoice-update-cancel" isDanger>
+            Cancel
+          </Button>
         </Link>
         <Button data-test-id="invoice-update" onClick={handleSubmit}>
           Update

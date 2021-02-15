@@ -35,7 +35,7 @@ const Details = ({
         <Col textAlign="end">
           <Dropdown onSelect={handleSelect}>
             <Trigger>
-              <IconButton aria-label="plant">
+              <IconButton data-test-id="invoice-actions" aria-label="plant">
                 <MenuIcon />
               </IconButton>
             </Trigger>
@@ -57,22 +57,26 @@ const Details = ({
               <Cell>
                 <MD isBold>Invoice number</MD>
               </Cell>
-              <Cell>{invoice_number}</Cell>
+              <Cell data-test-id="invoice-number-value">{invoice_number}</Cell>
             </TableRow>
             <TableRow>
               <Cell>
                 <MD isBold>Issue date</MD>
               </Cell>
-              <Cell>{moment(issue_date).format('ll')}</Cell>
+              <Cell data-test-id="invoice-issue-date-value">
+                {moment(issue_date).format('ll')}
+              </Cell>
             </TableRow>
             <TableRow>
               <Cell>
                 <MD isBold>Due date</MD>
               </Cell>
-              <Cell>{moment(due_date).format('ll')}</Cell>
+              <Cell data-test-id="invoice-due-date-value">
+                {moment(due_date).format('ll')}
+              </Cell>
             </TableRow>
             <TableRow>
-              <Cell>
+              <Cell data-test-id="invoice-due-amount-value">
                 <MD isBold>Due amount</MD>
               </Cell>
               <Cell>${due_amount}</Cell>
@@ -81,7 +85,7 @@ const Details = ({
               <Cell>
                 <MD isBold>Status</MD>
               </Cell>
-              <Cell>
+              <Cell data-test-id="invoice-is-paid-value">
                 {is_paid ? (
                   <Code hue="green">Paid</Code>
                 ) : (
