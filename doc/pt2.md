@@ -163,23 +163,67 @@ Now, when you're familiar with the main concept of the application, let’s run 
   
 <h3 id="setup-custom-objects-schema">Setup Custom Objects schema</h3>
 
+In order to be able to use our showcase application you have to create a Custom Object type representing an `invoice`  and setup `Relationship` between standard Sell Object (`zen:deal` ) and `invoice` .
+
+
+
+You can use **Admin Center** to manually create [Objects Types](https://developer.zendesk.com/rest_api/docs/sunshine/resource_types) and [Relationships](https://developer.zendesk.com/rest_api/docs/sunshine/relationship_types), but in our case to make sure there won't be any mistakes let's run the script that will automatically create the schema for you. The script is available  in main directory - `custom_objects_schema_setup.js`
+
+Open `custom_objects_schema_setup.js` file in your editor
+At the top of the file provide necessary details:
+* SUBDOMAIN
+* E-MAIL
+* ACCESS_TOKEN - API tokens are managed in the Support admin interface at **Admin** > **Channels** > **API**.  Add new API token if need and place it in the script (remember to not expose your token publicly)
+
+In our project root directory run:
+`$ node custom_objects_schema_setup.js` 
+
+As a result you should see:
+```json
+Object type:
+ {
+  key: 'invoice',
+  schema: {
+    properties: {
+      invoice_number: [Object],
+      issue_date: [Object],
+      due_date: [Object],
+      due_amount: [Object],
+      is_paid: [Object]
+    },
+    ....
+}
+
+Relation type:
+ {
+  key: 'deal_invoice',
+  source: 'zen:deal',
+  target: 'invoice',
+  created_at: '2021-02-16T14:21:14.000Z',
+  updated_at: '2021-02-16T14:21:14.000Z'
+}
+
+Setup is ready. Please follow the next steps of tutorial.
+```
+Now your schema is all set. You can review created Object Type and relation in **Admin Center** > **Sunshine** and we can proceed to running the app locally.
+
 <h3 id="run-the-app-locally">Run the app locally</h3>
-1.  Using your command-line interface navigate to the folder containing the app you want to test.
+5.  Using your command-line interface navigate to the folder containing the app you want to test.
     
-2.  Install dependencies if necessary:
+6.  Install dependencies if necessary:
     
     `$ npm install`
     
-3.  Start your app with the following command:
+7.  Start your app with the following command:
     
     `$ npm start`
     
-4.  Open a new window in your terminal and start the server:
+8.  Open a new window in your terminal and start the server:
     
    
     `$ npm run server`
     
-5. In your browser's Address bar, click the shield icon on the right (Chrome) or lock icon on the left (Firefox) and agree to load an unsafe script (Chrome) or to disable protection (Firefox).
+9. In your browser's Address bar, click the shield icon on the right (Chrome) or lock icon on the left (Firefox) and agree to load an unsafe script (Chrome) or to disable protection (Firefox).
 
 Note: Safari has no option to disable protection.
 
