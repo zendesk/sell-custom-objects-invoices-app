@@ -28,7 +28,7 @@ You can run a Zendesk app in [different locations](https://developer.zendesk.com
    The **manifest.json** file is used to configure the app.  
 - You will see a location property with the following value:  
   
-```json  
+```  
 {
   ....
   "location":{
@@ -41,7 +41,7 @@ You can run a Zendesk app in [different locations](https://developer.zendesk.com
 ```  
   
 - In the future you can add different locations such as:
-```json=
+```
 {
    ....
    "location":{
@@ -180,7 +180,7 @@ In our project root directory run:
 `$ node custom_objects_schema_setup.js` 
 
 As a result you should see:
-```json
+```
 Object type:
  {
   key: 'invoice',
