@@ -12,15 +12,6 @@
 
   "location": {
     "sell": {
-      "lead_card": {
-        "url": "assets/index.html"
-      },
-      "person_card": {
-        "url": "assets/index.html"
-      },
-      "company_card": {
-        "url": "assets/index.html"
-      },
       "deal_card": {
         "url": "assets/index.html"
       }
