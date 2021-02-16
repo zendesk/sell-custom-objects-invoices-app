@@ -3,7 +3,7 @@ import {Datepicker} from '@zendeskgarden/react-datepickers'
 import {Field, Label, Input, Checkbox} from '@zendeskgarden/react-forms'
 import {Row, Col, Grid} from '@zendeskgarden/react-grid'
 import {Button} from '@zendeskgarden/react-buttons'
-import {useState} from 'react'
+import {useCallback, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {InvoiceData} from 'src/providers/sunshineProvider'
 
@@ -16,12 +16,12 @@ export interface EditFormAttributes {
   isPaid: boolean
 }
 
-const Edit = ({
+const EditForm = ({
   invoice,
   onSubmittedForm,
 }: {
   invoice: InvoiceData
-  onSubmittedForm: any
+  onSubmittedForm: (invoiceId: string, attributes: EditFormAttributes) => void
 }) => {
   const invoiceAttributes = invoice.attributes
   const [attributes, setAttributes] = useState({
@@ -32,22 +32,37 @@ const Edit = ({
     isPaid: invoiceAttributes.is_paid,
   })
 
-  const handleSubmit = () => onSubmittedForm(invoice.id, {...attributes})
+  const handleSubmit = useCallback(
+    () => onSubmittedForm(invoice.id, {...attributes} as EditFormAttributes),
+    [attributes],
+  )
 
-  const handleInvoiceNumber = (event: {target: {value: string}}) =>
-    setAttributes({...attributes, invoiceNumber: event.target.value})
+  const handleInvoiceNumber = useCallback(
+    (event: {target: {value: string}}) =>
+      setAttributes({...attributes, invoiceNumber: event.target.value}),
+    [attributes],
+  )
 
-  const handleIssueDate = (issueDate: Date) =>
-    setAttributes({...attributes, issueDate})
+  const handleIssueDate = useCallback(
+    (issueDate: Date) => setAttributes({...attributes, issueDate}),
+    [attributes],
+  )
 
-  const handleDueDate = (dueDate: Date) =>
-    setAttributes({...attributes, dueDate})
+  const handleDueDate = useCallback(
+    (dueDate: Date) => setAttributes({...attributes, dueDate}),
+    [attributes],
+  )
 
-  const handleDueAmount = (event: {target: {value: string}}) =>
-    setAttributes({...attributes, dueAmount: event.target.value})
+  const handleDueAmount = useCallback(
+    (event: {target: {value: string}}) =>
+      setAttributes({...attributes, dueAmount: event.target.value}),
+    [attributes],
+  )
 
-  const handleIsPaid = () =>
-    setAttributes({...attributes, isPaid: !attributes.isPaid})
+  const handleIsPaid = useCallback(
+    () => setAttributes({...attributes, isPaid: !attributes.isPaid}),
+    [attributes],
+  )
 
   return (
     <Grid>
@@ -107,4 +122,4 @@ const Edit = ({
   )
 }
 
-export default Edit
+export default EditForm

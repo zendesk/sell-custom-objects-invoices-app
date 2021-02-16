@@ -5,14 +5,14 @@ import {Button} from '@zendeskgarden/react-buttons'
 
 import {RelationshipData} from '../providers/sunshineProvider'
 
-const Delete = ({
+const DeleteSection = ({
   relation,
   onCancel,
   onDelete,
 }: {
   relation: RelationshipData
-  onCancel: any
-  onDelete: any
+  onCancel: () => void
+  onDelete: (relationId: string, invoiceId: string) => void
 }) => {
   const handleDelete = () => onDelete(relation.id, relation.target)
 
@@ -37,4 +37,4 @@ const Delete = ({
   )
 }
 
-export default Delete
+export default DeleteSection

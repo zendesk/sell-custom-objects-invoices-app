@@ -1,4 +1,7 @@
-import {NewFormAttributes} from '../components/New'
+import {Client} from '@zendesk/sell-zaf-app-toolbox'
+
+import {EditFormAttributes} from '../components/EditForm'
+import {NewFormAttributes} from '../components/NewForm'
 
 const OBJECT_TYPE = 'invoice'
 export const RELATION_TYPE = 'deal_invoice'
@@ -7,9 +10,10 @@ export interface InvoiceResponse {
   data: InvoiceData
 }
 export interface InvoiceData {
+  length: number
   type: string
   id: string
-  external_id: any
+  external_id: string
   attributes: InvoiceAttributes
   created_at: string
   updated_at: string
@@ -37,11 +41,14 @@ export interface RelationshipData {
 }
 
 interface RelationshipLinks {
-  previous: any
-  next: any
+  previous: string
+  next: string
 }
 
-export const createInvoice = (client: any, attributes: NewFormAttributes) => {
+export const createInvoice = (
+  client: Client | undefined,
+  attributes: NewFormAttributes,
+) => {
   const body = {
     data: {
       type: OBJECT_TYPE,
@@ -64,9 +71,9 @@ export const createInvoice = (client: any, attributes: NewFormAttributes) => {
 }
 
 export const updateInvoice = (
-  client: any,
+  client: Client | undefined,
   invoiceId: string,
-  attributes: NewFormAttributes,
+  attributes: EditFormAttributes,
 ) => {
   const body = {
     data: {
@@ -89,7 +96,7 @@ export const updateInvoice = (
 }
 
 export const createRelation = (
-  client: any,
+  client: Client | undefined,
   dealId: number,
   invoiceId: string,
 ) => {
@@ -109,14 +116,17 @@ export const createRelation = (
   })
 }
 
-export const deleteRelation = (client: any, relationId: string) => {
+export const deleteRelation = (
+  client: Client | undefined,
+  relationId: string,
+) => {
   return client?.request({
     url: `/api/sunshine/relationships/records/${relationId}`,
     method: 'DELETE',
   })
 }
 
-export const deleteObject = (client: any, objectId: string) => {
+export const deleteObject = (client: Client | undefined, objectId: string) => {
   return client?.request({
     url: `/api/sunshine/objects/records/${objectId}`,
     method: 'DELETE',

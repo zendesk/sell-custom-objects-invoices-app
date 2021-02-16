@@ -1,4 +1,6 @@
 import * as React from 'react'
+import {useCallback} from 'react'
+
 import {ResponseHandler, useClientRequest} from '@zendesk/sell-zaf-app-toolbox'
 
 import {useHistory} from 'react-router-dom'
@@ -14,10 +16,11 @@ const DetailsView = ({dealId}: {dealId: string}) => {
     `/api/sunshine/objects/records/zen:deal:${dealId}/related/deal_invoice`,
   )
 
-  const handleEdit = () => history.push('/edit')
-  const handleDelete = () => history.push('/delete')
+  const handleEdit = useCallback(() => history.push('/edit'), [])
+  const handleDelete = useCallback(() => history.push('/delete'), [])
 
-  const isRelationEmpty = (response: any) => response.data.data.length === 0
+  const isRelationEmpty = (response: {data: InvoiceResponse}) =>
+    response.data.data.length === 0
 
   return (
     <ResponseHandler

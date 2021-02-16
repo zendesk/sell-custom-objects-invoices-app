@@ -9,14 +9,19 @@ import MenuIcon from '@zendeskgarden/svg-icons/src/16/menu-fill.svg'
 
 import {InvoiceData} from '../providers/sunshineProvider'
 
+enum InvoiceActions {
+  Delete = 'delete',
+  Edit = 'edit',
+}
+
 const Details = ({
   invoice,
   onEdit,
   onDelete,
 }: {
   invoice: InvoiceData
-  onEdit: any
-  onDelete: any
+  onEdit: () => void
+  onDelete: () => void
 }) => {
   const {
     invoice_number,
@@ -26,8 +31,16 @@ const Details = ({
     is_paid,
   } = invoice.attributes
 
-  const handleSelect = (item: string) =>
-    item === 'delete' ? onDelete() : onEdit()
+  const handleSelect = (item: string) => {
+    switch (item) {
+      case InvoiceActions.Delete:
+        onDelete()
+        break
+      case InvoiceActions.Edit:
+        onEdit()
+        break
+    }
+  }
 
   return (
     <Grid>
@@ -40,10 +53,10 @@ const Details = ({
               </IconButton>
             </Trigger>
             <Menu>
-              <Item value="edit" data-test-id="invoice-edit">
+              <Item value={InvoiceActions.Edit} data-test-id="invoice-edit">
                 Edit
               </Item>
-              <Item value="delete" data-test-id="invoice-delete">
+              <Item value={InvoiceActions.Delete} data-test-id="invoice-delete">
                 Delete
               </Item>
             </Menu>

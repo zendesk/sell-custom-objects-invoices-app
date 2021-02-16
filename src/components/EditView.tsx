@@ -6,11 +6,11 @@ import {
   useClientRequest,
   ZAFClientContext,
 } from '@zendesk/sell-zaf-app-toolbox'
-import {useContext} from 'react'
+import {useCallback, useContext} from 'react'
 
 import {updateInvoice, InvoiceResponse} from '../providers/sunshineProvider'
 import Loader from './Loader'
-import Edit, {EditFormAttributes} from './Edit'
+import EditForm, {EditFormAttributes} from './EditForm'
 
 const EditView = ({dealId}: {dealId: string}) => {
   useClientHeight(400)
@@ -21,12 +21,13 @@ const EditView = ({dealId}: {dealId: string}) => {
     `/api/sunshine/objects/records/zen:deal:${dealId}/related/deal_invoice`,
   )
 
-  const handleSubmittedForm = (
-    invoiceId: string,
-    attributes: EditFormAttributes,
-  ) => {
-    updateInvoice(client, invoiceId, attributes).then(() => history.push('/'))
-  }
+  const handleSubmittedForm = useCallback(
+    async (invoiceId: string, attributes: EditFormAttributes) => {
+      await updateInvoice(client, invoiceId, attributes)
+      history.push('/')
+    },
+    [],
+  )
 
   return (
     <ResponseHandler
@@ -36,7 +37,7 @@ const EditView = ({dealId}: {dealId: string}) => {
       emptyView={<div>There's nothing to see yet.</div>}
     >
       {([response]: [InvoiceResponse]) => (
-        <Edit
+        <EditForm
           invoice={response.data[0]}
           onSubmittedForm={handleSubmittedForm}
         />

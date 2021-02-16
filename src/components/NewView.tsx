@@ -6,7 +6,7 @@ import {
   useClientHeight,
   ZAFClientContext,
 } from '@zendesk/sell-zaf-app-toolbox'
-import {useContext} from 'react'
+import {useCallback, useContext} from 'react'
 
 import {
   createInvoice,
@@ -14,7 +14,7 @@ import {
   InvoiceResponse,
 } from '../providers/sunshineProvider'
 import Loader from './Loader'
-import New, {NewFormAttributes} from './New'
+import NewForm, {NewFormAttributes} from './NewForm'
 
 const NewView = () => {
   useClientHeight(400)
@@ -22,13 +22,17 @@ const NewView = () => {
   const dealIdResponse = useClientGet('deal.id')
   const client = useContext(ZAFClientContext)
 
-  const handleSubmittedForm = (attributes: NewFormAttributes) => {
-    createInvoice(client, attributes).then((response: InvoiceResponse) => {
-      createRelation(client, attributes.dealId, response.data.id).then(() =>
-        history.push('/'),
-      )
-    })
-  }
+  const handleSubmittedForm = useCallback(
+    async (attributes: NewFormAttributes) => {
+      const invoiceResponse = (await createInvoice(
+        client,
+        attributes,
+      )) as InvoiceResponse
+      await createRelation(client, attributes.dealId, invoiceResponse.data.id)
+      history.push('/')
+    },
+    [],
+  )
 
   return (
     <ResponseHandler
@@ -38,7 +42,7 @@ const NewView = () => {
       emptyView={<div>There's nothing to see yet.</div>}
     >
       {([dealId]: [number]) => (
-        <New dealId={dealId} onSubmittedForm={handleSubmittedForm} />
+        <NewForm dealId={dealId} onSubmittedForm={handleSubmittedForm} />
       )}
     </ResponseHandler>
   )
