@@ -36,6 +36,7 @@ You can run a Zendesk app in [different locations](https://developer.zendesk.com
       "deal_card":"assets/index.html"
     }
   }
+  ....
 }
 ```  
   
@@ -59,6 +60,7 @@ You can run a Zendesk app in [different locations](https://developer.zendesk.com
          }
       }
    }
+   ....
 }
 ``` 
   
@@ -66,7 +68,7 @@ You can run a Zendesk app in [different locations](https://developer.zendesk.com
   
 Your Zendesk app will live in an iframe on the `deal_card` location that we specified in the previous section. Like any iframe app, developing a Zendesk app consists of combining static and dynamic elements in the HTML file to be displayed in the iframe.  
   
-The main HTML file called **index.html** sits in your **assets** folder ( **dist/assets/index.html** ). Open the **index.html** file in your favourite code editor.  
+Open the **index.html** file in your favourite code editor.  
   
 ```html  
 <!DOCTYPE html>  
@@ -82,8 +84,7 @@ The main HTML file called **index.html** sits in your **assets** folder ( **dist
     />  
   </head>  
   <body>  
-    <div id="app"></div>  
-    <script src="main.bundle.js?73d0a9fd0e452ba14695"></script>  
+    <div id="app"></div>
   </body>  
 </html>  
   
@@ -145,7 +146,7 @@ Then we use [React Context](https://reactjs.org/docs/context.html) to make the `
   
 We also use [Zendesk Garden](<(https://garden.zendesk.com/)>) as the UI framework. Zendesk Garden is designed to be a common baseline of styles and components between all Zendesk products. It provides, for example, [customizable React components](https://garden.zendesk.com/components) such as spinners, buttons etc., that can be easily included in the project. Use the Zendesk Garden assets if you want your app to match the look and feel of Zendesk products.  
   
-As you can see, the all components are wrapped in `<ThemeProvider>` delivered by [@zendeskgarden/react-theming](https://github.com/zendeskgarden/react-components/tree/main/packages/theming) package to provide a default global theming for nested components.  
+As you can see, all components are wrapped in `<ThemeProvider>` delivered by [@zendeskgarden/react-theming](https://github.com/zendeskgarden/react-components/tree/main/packages/theming) package to provide a default global theming for nested components.  
   
 ```js  
 <ThemeProvider>
@@ -205,25 +206,24 @@ Relation type:
 
 Setup is ready. Please follow the next steps of tutorial.
 ```
-Now your schema is all set. You can review created Object Type and relation in **Admin Center** > **Sunshine** and we can proceed to running the app locally.
+Now your schema is all set. You can review created Object Type and relation in **Admin Center** > **Sunshine** > **Objects** / **Relationships** and we can proceed to running the app locally.
 
 <h3 id="run-the-app-locally">Run the app locally</h3>
-5.  Using your command-line interface navigate to the folder containing the app you want to test.
-    
-6.  Install dependencies if necessary:
-    
-    `$ npm install`
-    
-7.  Start your app with the following command:
-    
-    `$ npm start`
-    
-8.  Open a new window in your terminal and start the server:
-    
-   
-    `$ npm run server`
-    
-9. In your browser's Address bar, click the shield icon on the right (Chrome) or lock icon on the left (Firefox) and agree to load an unsafe script (Chrome) or to disable protection (Firefox).
+Using your command-line interface navigate to the folder containing the app you want to test.
+
+Install dependencies if necessary:
+
+`$ npm install`
+
+Start your app with the following command:
+
+`$ npm start`
+
+Open a new window in your terminal and start the server:
+
+`$ npm run server`
+
+Optionally: In your browser's Address bar, click the shield icon on the right (Chrome) or lock icon on the left (Firefox) and agree to load an unsafe script (Chrome) or to disable protection (Firefox).
 
 Note: Safari has no option to disable protection.
 
@@ -233,7 +233,7 @@ Once you have your app running locally, let’s see if the app works and is disp
   
 <img src="https://zen-marketing-documentation.s3.amazonaws.com/docs/en/add_contact_person_in_sell.png" alt="Add a contact person to Sell" width="600"/>  
   
-Fill in the form with at least **Deal Name** and **Primary Contact** and click **Save & view deal**.  
+Fill in the form with at least **Deal Name** and **Primary Contact** then click **Save & view deal**.  
   
  You will land on your new Deal page. In order to see our locally running application please append  `?zcli_apps=true`  to the URL. Example:  [https://app.futuresimple.com/sales/deals/123?zcli_apps=true](https://app.futuresimple.com/sales/deals/123?zcli_apps=true)
  
