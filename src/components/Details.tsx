@@ -31,8 +31,8 @@ const Details = ({
     is_paid,
   } = invoice.attributes
 
-  const handleSelect = (item: string) => {
-    switch (item) {
+  const handleSelect = (action: InvoiceActions) => {
+    switch (action) {
       case InvoiceActions.Delete:
         onDelete()
         break
