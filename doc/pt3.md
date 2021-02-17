@@ -7,9 +7,9 @@ This part of the tutorial covers the following tasks:
 
     
 1. [Getting data from Sunshine API](#getting-data)    
-2. [Create Object & Relations via Sunshine API ](#create-objects)    
+2. [Create Object & Relation via Sunshine API ](#create-objects)    
 3. [Edit Objects via Sunshine API](#edit-objects)    
-4. [Delete Objects & Relations via Sunshine API](#delete-objects)    
+4. [Delete Objects & Relation via Sunshine API](#delete-objects)    
     
 This tutorial is the second part of a series on building a Zendesk app:    
     
@@ -22,7 +22,7 @@ This tutorial is the second part of a series on building a Zendesk app:
 
 You probably noticed that our application is a simple CRUD. In this section we will focus on Reading data using Sunshine API.
 Open our main component `<App >` (`src/index.tsx`) one more time and look at `return` method.
-```js
+```
 return (
 	...   
         <Router>
@@ -72,7 +72,7 @@ The first request sits in the [useClientGet](https://github.com/zendesk/sell-zaf
   
 `<ResponseHandler/>` component is responsible for handling asynchronous requests. Depending on a request status it can display a loader, an error state or an empty state. When the request has been finished successfully a child component with the response data is being rendered.  
 
-At this point we already get `deal.id` and we can pass it to `DetailsView` component. Open **src/components/DetailsViews.tsx**.
+At this point we already got `deal.id` and we can pass it to `DetailsView` component. Open **src/components/DetailsViews.tsx**.
 
 ```js
 const DetailsView = ({dealId}: {dealId: string}) => {
@@ -106,7 +106,7 @@ const DetailsView = ({dealId}: {dealId: string}) => {
   )
 }
 ```
-This component is also responsible for gathering the data based on provided `dealId` - it uses Sunshine API to find related Custom Objects `Invoice` record for given `dealId`.
+This component is also responsible for gathering data based on provided `dealId` prop - it uses Sunshine API to find related Custom Object `Invoice` record for given `dealId`.
 
 It uses [useClientRequest](https://github.com/zendesk/sell-zaf-app-toolbox#useclientrequesturl-options-dependencies-cachekey) hook to perform a `GET` request on [Related Object Records API](https://developer.zendesk.com/rest_api/docs/sunshine/resources#list-related-object-records). As you probably remember we defined our 1:1 Relationship type as:
 ```
@@ -117,11 +117,37 @@ It uses [useClientRequest](https://github.com/zendesk/sell-zaf-app-toolbox#usecl
   ....
 }
 ```
+An example request to fetch related `Invoice` for our Deal will look like this:
 
-In this case `<ResponseHandler/>` also covers asynchronous requests. Moreover it allows to provide a method as a  `isEmpty` prop to check whether the response is empty or not. In case it's empty (no `Invoice` record created yet) component provided as`emptyView` prop will be rendered. In our case it is `<EmptyState />`.
+`https://..../api/sunshine/objects/records/zen:deal:21730067/related/deal_invoice`
+
+Where `21730067` is a `dealId` of a Deal from our current location, provided as a prop and `deal_invoice` is a `relationship_type_key` that we are looking for.
+
+In this case `<ResponseHandler/>` also covers asynchronous requests. Moreover it allows to provide a method  `isEmpty`  as a prop to check whether the response is empty or not. In case it's empty (no `Invoice` records created yet) component provided as`emptyView` prop will be rendered. In our case it is `<EmptyState />`.
+
+When response in not empty `Invoice` record is passed to a **Details.js** component responsible for rendering its properties.
 
 
-<h3 id="create-objects">Create Object & Relations via Sunshine API</h3>
+<h3 id="create-objects">Create Object & Relation via Sunshine API</h3>
+
+In this section we will talk about the situation when above's response is empty, so there is no `Invoice` yet and we would like to add new record. 
+**EmptyState.tsx** component responsible for handling this scenario simply display a button to add new `Invoie` and navigates to **NewView.tsx** throught  `/new` path. 
+
+```js
+const EmptyState = () => {
+  return (
+   ...
+        <Link to="/new">
+          <Button data-test-id="invoice-new">Add Invoice</Button>
+        </Link>
+   ...
+  )
+}
+```
+
+We use standard `Garden UI` components such as `Button` which you can find here: https://garden.zendesk.com/components/button
+
+
 
 <h3 id="edit-objects">Edit Objects via Sunshine API</h3>
 
