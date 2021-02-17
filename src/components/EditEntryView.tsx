@@ -6,11 +6,11 @@ import {
 } from '@zendesk/sell-zaf-app-toolbox'
 import {Row, Grid} from '@zendeskgarden/react-grid'
 
-import Loader from './components/Loader'
-import DetailsView from './components/DetailsView'
-import css from './App.css'
+import Loader from './Loader'
+import EditView from './EditView'
+import css from '../App.css'
 
-export const EntryView = () => {
+export const EditEntryView = () => {
   useClientHeight(250)
   const dealIdResponse = useClientGet('deal.id')
 
@@ -23,11 +23,11 @@ export const EntryView = () => {
           errorView={<div>Something went wrong!</div>}
           emptyView={<div>There is no Deal</div>}
         >
-          {([dealId]: [string]) => <DetailsView dealId={dealId} />}
+          {([dealId]: [string]) => <EditView dealId={dealId} />}
         </ResponseHandler>
       </Row>
     </Grid>
   )
 }
 
-export default EntryView
+export default EditEntryView
