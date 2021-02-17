@@ -55,7 +55,6 @@ const invoiceTypeSchema = {
         },
       },
       required: [
-        'invoice_number',
         'issue_date',
         'due_date',
         'due_amount',
