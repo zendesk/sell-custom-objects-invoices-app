@@ -18,7 +18,7 @@ This tutorial is the second part of a series on building a Zendesk app:
 - Part 3: Implementation details - YOU ARE HERE  
 
     
-<h3 id="getting-data">Getting data from Sunshine API</h3>
+<h3 id="getting-data">1. Getting data from Sunshine API</h3>
 
 You probably noticed that our application is a simple CRUD. In this section we will focus on Reading data using [Sunshine Custom Objects API](https://developer.zendesk.com/rest_api/docs/sunshine/custom_objects_api).
 Open our main component `<App >` (**src/index.tsx**) and look at `return` method.
@@ -128,7 +128,7 @@ In this case `<ResponseHandler/>` also covers asynchronous requests. Moreover it
 When response in not empty `Invoice` record is passed to a **Details.js** component responsible for rendering its attributes.
 
 
-<h3 id="create-objects">Create Object & Relation via Sunshine API</h3>
+<h3 id="create-objects">2. Create Object & Relation via Sunshine API</h3>
 
 In this section we will talk about the situation when above's response is empty, so there is no `Invoice` yet and we would like to add new record. 
 **EmptyState.tsx** component responsible for handling this scenario simply display a button to add new `Invoie` and navigates to **NewView.tsx** throughout  `/new` path. 
@@ -246,7 +246,7 @@ This method runs just after we get the response from `createInvoice` and as a pa
 
 At the end we navigate back to `EntryView` using `history.push('/')` available by using [React Router](https://reactrouter.com/). At this point it will load our newly created `Invoice` as described in [Getting data from Sunshine API](#getting-data)  
 
-<h3 id="edit-objects">Edit Objects via Sunshine API</h3>
+<h3 id="edit-objects">3. Edit Objects via Sunshine API</h3>
 
 In this section  we will show how to edit Custom Object records using Sunshine API. It happens when you navigated  to `/edit`  form `<Details>`. This action is handled by `<EditView>`.
 
@@ -329,7 +329,7 @@ export const updateInvoice = (
 Based on `invoiceId` provided in params this method makes a `PATCH` request to [Update Object  Record API](https://developer.zendesk.com/rest_api/docs/sunshine/resources#update-object-record). 
 *Note `contentType: 'application/merge-patch+json'`
 
-<h3 id="delete-objects">Delete Objects & Relations via Sunshine API</h3>
+<h3 id="delete-objects">4. Delete Objects & Relations via Sunshine API</h3>
 
 Last action available to perform in our showcase application is a detach of the `Invoice`  record from given Deal. It can be performed from `<Details>` view and by clicking Button that navigates  to `/delete`  path handled by `<DeleteView>` component.
 
