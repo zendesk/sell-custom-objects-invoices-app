@@ -13,8 +13,9 @@ This part of tutorial covers the following steps:
 7. [Quick app files overview](#app-files-overview)    
     
 The other tutorials in the series teach you how to build and install the app:    
-    
-- [Part 2: Running showcase app locally](https://develop.zendesk.com/hc/en-us/articles/...)    
+- Part 1: Laying the groundwork - YOU ARE HERE
+- [Part 2: Running showcase app locally](https://develop.zendesk.com/hc/en-us/articles/...) 
+- [Part 3: Implementation details](...)
     
 Because the tutorials build on each other, tackle them in order and finish each tutorial before moving on to the next one.    
     
