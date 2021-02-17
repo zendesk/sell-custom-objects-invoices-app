@@ -22,7 +22,7 @@ This tutorial is the second part of a series on building a Zendesk app:
 
 You probably noticed that our application is a simple CRUD. In this section we will focus on Reading data using Sunshine API.
 Open our main component `<App >` (`src/index.tsx`) one more time and look at `return` method.
-```
+```js
 return (
 	...   
         <Router>
@@ -147,7 +147,104 @@ const EmptyState = () => {
 
 We use standard `Garden UI` components such as `Button` which you can find here: https://garden.zendesk.com/components/button
 
+Like mentioned above adding new `Invoice` record is handled by **NewView.tsx**. 
+```js
+const NewView = () => {
+  useClientHeight(400)
+  const history = useHistory()
+  const dealIdResponse = useClientGet('deal.id')
+  const client = useContext(ZAFClientContext)
 
+  const handleSubmittedForm = useCallback(
+    async (attributes: NewFormAttributes) => {
+      const invoiceResponse = (await createInvoice(
+        client,
+        attributes,
+      )) as InvoiceResponse
+      await createRelation(client, attributes.dealId, invoiceResponse.data.id)
+      history.push('/')
+    },
+    [],
+  )
+
+  return (
+    <ResponseHandler
+      responses={[dealIdResponse]}
+      loadingView={<Loader />}
+      errorView={<div>Something went wrong!</div>}
+      emptyView={<div>There's nothing to see yet.</div>}
+    >
+      {([dealId]: [number]) => (
+        <NewForm dealId={dealId} onSubmittedForm={handleSubmittedForm} />
+      )}
+    </ResponseHandler>
+  )
+}
+```
+
+This component renders `<NewForm>` and provides it with `dealId` and a `onSubmittedForm` prop that is invoked once form is submitted.
+
+Function `handleSubmittedForm`  gets invoice attributes passed from the form and performs two actions - `createInvoice` and `createRelation`  implemented within `SunshineProvider.ts` .
+
+**`createInvoice`**
+
+```js
+export const createInvoice = (
+  client: Client | undefined,
+  attributes: NewFormAttributes,
+) => {
+  const body = {
+    data: {
+      type: OBJECT_TYPE,
+      attributes: {
+        invoice_number: attributes.invoiceNumber,
+        issue_date: attributes.issueDate,
+        due_date: attributes.dueDate,
+        due_amount: parseFloat(attributes.dueAmount),
+        is_paid: attributes.isPaid,
+      },
+    },
+  }
+
+  return client?.request({
+    url: `/api/sunshine/objects/records`,
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify(body),
+  })
+}
+```
+This method makes a POST request to [Create Object record API](https://developer.zendesk.com/rest_api/docs/sunshine/resources#create-object-record) and creates a new record of `Invoice`. A `client` performing the request is an instance of  [ZAF Client](https://developer.zendesk.com/apps/docs/core-api/client_api#zaf-client-api) initialised in `<App>` component. 
+As a response we get `Invoice` record and we can use it's `id` to create a relation between Deal na `Invoice`.
+
+
+**`createRelation`**
+```js
+export const createRelation = (
+  client: Client | undefined,
+  dealId: number,
+  invoiceId: string,
+) => {
+  const data = {
+    data: {
+      relationship_type: RELATION_TYPE,
+      source: `zen:deal:${dealId}`,
+      target: invoiceId,
+    },
+  }
+
+  return client?.request({
+    url: `/api/sunshine/relationships/records`,
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify(data),
+  })
+}
+```
+This method runs just after we get the response from `createInvoice` and as a param requires `dealId` and `invoiceId` . As an outcome it makes a POST request to [Create Relationship record API](https://developer.zendesk.com/rest_api/docs/sunshine/relationships#create-relationship-record) and creates a new record of linking `Invoice` and Deal. A `client` performing the request (passed as a param) is also an instance of  [ZAF Client](https://developer.zendesk.com/apps/docs/core-api/client_api#zaf-client-api) initialised in `<App>` component. 
+
+
+At the end we navigate back to `EntryView` using `history.push('/')` available by using [React Router](https://reactrouter.com/). At this point it will load our newly created `Invoice` as described in [Getting data from Sunshine API](#getting-data)  
 
 <h3 id="edit-objects">Edit Objects via Sunshine API</h3>
 
