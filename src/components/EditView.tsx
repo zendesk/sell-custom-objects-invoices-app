@@ -28,8 +28,8 @@ const EditView = ({dealId}: {dealId: string}) => {
     },
     [],
   )
-  const isInvoiceListEmpty = (response: InvoiceListResponse) =>
-    response.data.length === 0
+  const isInvoiceListEmpty = (response: {data: InvoiceListResponse}) =>
+    response.data.data.length === 0
 
   return (
     <ResponseHandler

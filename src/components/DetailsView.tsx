@@ -19,8 +19,8 @@ const DetailsView = ({dealId}: {dealId: string}) => {
   const handleEdit = useCallback(() => history.push('/edit'), [])
   const handleDelete = useCallback(() => history.push('/delete'), [])
 
-  const isInvoiceListEmpty = (response: InvoiceListResponse) =>
-    response.data.length === 0
+  const isInvoiceListEmpty = (response: {data: InvoiceListResponse}) =>
+    response.data.data.length === 0
 
   return (
     <ResponseHandler
