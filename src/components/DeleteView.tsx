@@ -7,11 +7,15 @@ import {
 import {useHistory} from 'react-router-dom'
 import {useCallback, useContext} from 'react'
 
-import {deleteRelation, deleteObject, RelationshipData} from '../providers/sunshineProvider'
+import {
+  deleteRelation,
+  deleteObject,
+  RelationshipData,
+} from '../providers/sunshineProvider'
 
 import {
   RELATION_TYPE,
-  RelationshipResponse,
+  RelationshipListResponse,
 } from '../providers/sunshineProvider'
 import Loader from './Loader'
 import DeleteSection from './DeleteSection'
@@ -32,16 +36,25 @@ const DeleteView = ({dealId}: {dealId: string}) => {
     },
     [],
   )
+  const isRelationEmpty = (response: RelationshipListResponse) =>
+    response.data.length === 0
 
   return (
     <ResponseHandler
       response={sunshineResponse}
       loadingView={<Loader />}
       errorView={<div>Something went wrong!</div>}
+      emptyView={<div>Couldn't find any related invoices</div>}
+      isEmpty={isRelationEmpty}
     >
-      {([response]: [RelationshipResponse]) => (
+      {([response]: [RelationshipListResponse]) => (
         <DeleteSection
-          relation={response.data.find((relation: RelationshipData) => relation.source === `zen:deal:${dealId}`) as RelationshipData}
+          relation={
+            response.data.find(
+              (relation: RelationshipData) =>
+                relation.source === `zen:deal:${dealId}`,
+            ) as RelationshipData
+          }
           onDelete={handleDelete}
           onCancel={handleCancel}
         />
