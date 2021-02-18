@@ -21,6 +21,7 @@ import Loader from './Loader'
 import DeleteSection from './DeleteSection'
 
 const DeleteView = ({dealId}: {dealId: string}) => {
+  const dealRelationName = `zen:deal:${dealId}`
   const client = useContext(ZAFClientContext)
   const history = useHistory()
   const sunshineResponse = useClientRequest(
@@ -37,7 +38,9 @@ const DeleteView = ({dealId}: {dealId: string}) => {
     [],
   )
   const isRelationEmpty = (response: {data: RelationshipListResponse}) =>
-    response.data.data.length === 0
+    response.data.data.filter(
+      (relation: RelationshipData) => relation.source === dealRelationName,
+    ).length === 0
 
   return (
     <ResponseHandler
@@ -52,7 +55,7 @@ const DeleteView = ({dealId}: {dealId: string}) => {
           relation={
             response.data.find(
               (relation: RelationshipData) =>
-                relation.source === `zen:deal:${dealId}`,
+                relation.source === dealRelationName,
             ) as RelationshipData
           }
           onDelete={handleDelete}
