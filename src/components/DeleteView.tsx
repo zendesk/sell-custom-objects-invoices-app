@@ -36,8 +36,8 @@ const DeleteView = ({dealId}: {dealId: string}) => {
     },
     [],
   )
-  const isRelationEmpty = (response: RelationshipListResponse) =>
-    response.data.length === 0
+  const isRelationEmpty = (response: {data: RelationshipListResponse}) =>
+    response.data.data.length === 0
 
   return (
     <ResponseHandler

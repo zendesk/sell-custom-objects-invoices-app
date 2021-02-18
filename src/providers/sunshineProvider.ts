@@ -11,6 +11,7 @@ export interface InvoiceResponse {
 }
 export interface InvoiceListResponse {
   data: InvoiceData[]
+  links: Links
 }
 export interface InvoiceData {
   type: string
@@ -31,6 +32,7 @@ export interface InvoiceAttributes {
 
 export interface RelationshipListResponse {
   data: RelationshipData[]
+  links: Links
 }
 
 export interface RelationshipData {
@@ -39,6 +41,11 @@ export interface RelationshipData {
   source: string
   target: string
   created_at: string
+}
+
+interface Links {
+  previous: string
+  next: string
 }
 
 export const createInvoice = (
