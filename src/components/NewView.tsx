@@ -17,7 +17,7 @@ import Loader from './Loader'
 import NewForm, {NewFormAttributes} from './NewForm'
 
 const NewView = () => {
-  useClientHeight(400)
+  useClientHeight(370)
   const history = useHistory()
   const dealIdResponse = useClientGet('deal.id')
   const client = useContext(ZAFClientContext)

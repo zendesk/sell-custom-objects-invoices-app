@@ -6,6 +6,8 @@ import {Button} from '@zendeskgarden/react-buttons'
 import {useCallback, useState} from 'react'
 import {Link} from 'react-router-dom'
 
+import css from './Form.css'
+
 export interface NewFormAttributes {
   dealId: number
   invoiceNumber: string
@@ -63,7 +65,7 @@ const NewForm = ({
   )
 
   return (
-    <Grid>
+    <Grid className={css.Form}>
       <Row justifyContent="center">
         <Col sm={5}>
           <Field>
@@ -107,14 +109,18 @@ const NewForm = ({
         </Col>
       </Row>
       <Row>
-        <Link to="/">
-          <Button data-test-id="invoice-create-cancel" isDanger>
-            Cancel
+        <Col textAlign="end">
+          <Link to="/">
+            <Button data-test-id="invoice-create-cancel">Cancel</Button>
+          </Link>
+          <Button
+            data-test-id="invoice-create"
+            onClick={handleSubmit}
+            isPrimary
+          >
+            Create
           </Button>
-        </Link>
-        <Button data-test-id="invoice-create" onClick={handleSubmit}>
-          Create
-        </Button>
+        </Col>
       </Row>
     </Grid>
   )

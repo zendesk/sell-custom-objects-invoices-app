@@ -1,9 +1,10 @@
 import * as React from 'react'
-import {Grid, Row} from '@zendeskgarden/react-grid'
+import {Col, Grid, Row} from '@zendeskgarden/react-grid'
 import {LG} from '@zendeskgarden/react-typography'
 import {Button} from '@zendeskgarden/react-buttons'
 
 import {RelationshipData} from '../providers/sunshineProvider'
+import css from './DeleteSection.css'
 
 const DeleteSection = ({
   relation,
@@ -17,21 +18,22 @@ const DeleteSection = ({
   const handleDelete = () => onDelete(relation.id, relation.target)
 
   return (
-    <Grid>
-      <Row>
-        <LG>Do you want to remove Invoice?</LG>
-      </Row>
-      <Row>
-        <Button data-test-id="invoice-delete-cancel" onClick={onCancel}>
-          Cancel
-        </Button>
-        <Button
-          isDanger
-          data-test-id="invoice-delete-confirm"
-          onClick={handleDelete}
-        >
-          Delete
-        </Button>
+    <Grid className={css.DeleteSection}>
+      <Row justifyContent="center" alignItems="center">
+        <Col textAlign="center">
+          <LG>Do you want to remove Invoice?</LG>
+          <Button data-test-id="invoice-delete-cancel" onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button
+            isDanger
+            isPrimary
+            data-test-id="invoice-delete-confirm"
+            onClick={handleDelete}
+          >
+            Delete
+          </Button>
+        </Col>
       </Row>
     </Grid>
   )

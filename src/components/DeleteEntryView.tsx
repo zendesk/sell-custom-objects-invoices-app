@@ -11,7 +11,7 @@ import DeleteView from './DeleteView'
 import css from '../App.css'
 
 export const DeleteEntryView = () => {
-  useClientHeight(250)
+  useClientHeight(100)
   const dealIdResponse = useClientGet('deal.id')
 
   return (

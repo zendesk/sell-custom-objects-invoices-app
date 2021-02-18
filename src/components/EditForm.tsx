@@ -7,6 +7,8 @@ import {useCallback, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {InvoiceData} from 'src/providers/sunshineProvider'
 
+import css from './Form.css'
+
 export interface EditFormAttributes {
   dealId: number
   invoiceNumber: string
@@ -65,7 +67,7 @@ const EditForm = ({
   )
 
   return (
-    <Grid>
+    <Grid className={css.Form}>
       <Row justifyContent="center">
         <Col sm={5}>
           <Field>
@@ -109,14 +111,18 @@ const EditForm = ({
         </Col>
       </Row>
       <Row>
-        <Link to="/">
-          <Button data-test-id="invoice-update-cancel" isDanger>
-            Cancel
+        <Col textAlign="end">
+          <Link to="/">
+            <Button data-test-id="invoice-update-cancel">Cancel</Button>
+          </Link>
+          <Button
+            data-test-id="invoice-update"
+            onClick={handleSubmit}
+            isPrimary
+          >
+            Update
           </Button>
-        </Link>
-        <Button data-test-id="invoice-update" onClick={handleSubmit}>
-          Update
-        </Button>
+        </Col>
       </Row>
     </Grid>
   )

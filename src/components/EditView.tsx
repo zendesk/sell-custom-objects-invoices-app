@@ -2,7 +2,6 @@ import * as React from 'react'
 import {useHistory} from 'react-router-dom'
 import {
   ResponseHandler,
-  useClientHeight,
   useClientRequest,
   ZAFClientContext,
 } from '@zendesk/sell-zaf-app-toolbox'
@@ -13,7 +12,6 @@ import Loader from './Loader'
 import EditForm, {EditFormAttributes} from './EditForm'
 
 const EditView = ({dealId}: {dealId: string}) => {
-  useClientHeight(400)
   const history = useHistory()
   const client = useContext(ZAFClientContext)
 

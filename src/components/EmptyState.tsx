@@ -10,7 +10,7 @@ const EmptyState = () => {
   return (
     <Col textAlign="center">
       <Row justifyContent="center" className={css.contentView}>
-        <EmptyStateSVG width={'60%'} />
+        <EmptyStateSVG width={'50%'} />
       </Row>
       <Row justifyContent="center" className={css.contentView}>
         <Link to="/new">
