@@ -9,8 +9,11 @@ export const RELATION_TYPE = 'deal_invoice'
 export interface InvoiceResponse {
   data: InvoiceData
 }
+export interface InvoiceListResponse {
+  data: InvoiceData[]
+  links: Links
+}
 export interface InvoiceData {
-  length: number
   type: string
   id: string
   external_id: string
@@ -27,9 +30,9 @@ export interface InvoiceAttributes {
   is_paid: boolean
 }
 
-export interface RelationshipResponse {
+export interface RelationshipListResponse {
   data: RelationshipData[]
-  links: RelationshipLinks
+  links: Links
 }
 
 export interface RelationshipData {
@@ -40,7 +43,7 @@ export interface RelationshipData {
   created_at: string
 }
 
-interface RelationshipLinks {
+interface Links {
   previous: string
   next: string
 }

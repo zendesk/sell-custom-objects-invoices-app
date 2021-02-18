@@ -89,10 +89,10 @@ const Details = ({
               </Cell>
             </TableRow>
             <TableRow>
-              <Cell data-test-id="invoice-due-amount-value">
+              <Cell>
                 <MD isBold>Due amount</MD>
               </Cell>
-              <Cell>${due_amount}</Cell>
+              <Cell data-test-id="invoice-due-amount-value">${due_amount}</Cell>
             </TableRow>
             <TableRow>
               <Cell>

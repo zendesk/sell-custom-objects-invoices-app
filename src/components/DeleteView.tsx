@@ -7,16 +7,21 @@ import {
 import {useHistory} from 'react-router-dom'
 import {useCallback, useContext} from 'react'
 
-import {deleteRelation, deleteObject} from '../providers/sunshineProvider'
+import {
+  deleteRelation,
+  deleteObject,
+  RelationshipData,
+} from '../providers/sunshineProvider'
 
 import {
   RELATION_TYPE,
-  RelationshipResponse,
+  RelationshipListResponse,
 } from '../providers/sunshineProvider'
 import Loader from './Loader'
 import DeleteSection from './DeleteSection'
 
-const DeleteView = () => {
+const DeleteView = ({dealId}: {dealId: string}) => {
+  const dealRelationName = `zen:deal:${dealId}`
   const client = useContext(ZAFClientContext)
   const history = useHistory()
   const sunshineResponse = useClientRequest(
@@ -32,16 +37,27 @@ const DeleteView = () => {
     },
     [],
   )
+  const isRelationEmpty = (response: {data: RelationshipListResponse}) =>
+    response.data.data.filter(
+      (relation: RelationshipData) => relation.source === dealRelationName,
+    ).length === 0
 
   return (
     <ResponseHandler
       response={sunshineResponse}
       loadingView={<Loader />}
       errorView={<div>Something went wrong!</div>}
+      emptyView={<div>Couldn't find any related invoices</div>}
+      isEmpty={isRelationEmpty}
     >
-      {([response]: [RelationshipResponse]) => (
+      {([response]: [RelationshipListResponse]) => (
         <DeleteSection
-          relation={response.data[0]}
+          relation={
+            response.data.find(
+              (relation: RelationshipData) =>
+                relation.source === dealRelationName,
+            ) as RelationshipData
+          }
           onDelete={handleDelete}
           onCancel={handleCancel}
         />

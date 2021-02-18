@@ -8,7 +8,7 @@ import {
 } from '@zendesk/sell-zaf-app-toolbox'
 import {useCallback, useContext} from 'react'
 
-import {updateInvoice, InvoiceResponse} from '../providers/sunshineProvider'
+import {updateInvoice, InvoiceListResponse} from '../providers/sunshineProvider'
 import Loader from './Loader'
 import EditForm, {EditFormAttributes} from './EditForm'
 
@@ -28,15 +28,18 @@ const EditView = ({dealId}: {dealId: string}) => {
     },
     [],
   )
+  const isInvoiceListEmpty = (response: {data: InvoiceListResponse}) =>
+    response.data.data.length === 0
 
   return (
     <ResponseHandler
       responses={[sunshineResponse]}
       loadingView={<Loader />}
       errorView={<div>Something went wrong!</div>}
-      emptyView={<div>There's nothing to see yet.</div>}
+      emptyView={<div>Couldn't find any related invoices</div>}
+      isEmpty={isInvoiceListEmpty}
     >
-      {([response]: [InvoiceResponse]) => (
+      {([response]: [InvoiceListResponse]) => (
         <EditForm
           invoice={response.data[0]}
           onSubmittedForm={handleSubmittedForm}

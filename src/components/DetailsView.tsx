@@ -7,7 +7,7 @@ import {useHistory} from 'react-router-dom'
 
 import Loader from './Loader'
 import EmptyState from './EmptyState'
-import {InvoiceResponse} from '../providers/sunshineProvider'
+import {InvoiceListResponse} from '../providers/sunshineProvider'
 import Details from './Details'
 
 const DetailsView = ({dealId}: {dealId: string}) => {
@@ -19,7 +19,7 @@ const DetailsView = ({dealId}: {dealId: string}) => {
   const handleEdit = useCallback(() => history.push('/edit'), [])
   const handleDelete = useCallback(() => history.push('/delete'), [])
 
-  const isRelationEmpty = (response: {data: InvoiceResponse}) =>
+  const isInvoiceListEmpty = (response: {data: InvoiceListResponse}) =>
     response.data.data.length === 0
 
   return (
@@ -28,9 +28,9 @@ const DetailsView = ({dealId}: {dealId: string}) => {
       loadingView={<Loader />}
       errorView={<div>Something went wrong!</div>}
       emptyView={<EmptyState />}
-      isEmpty={isRelationEmpty}
+      isEmpty={isInvoiceListEmpty}
     >
-      {([response]: [InvoiceResponse]) => (
+      {([response]: [InvoiceListResponse]) => (
         <Details
           invoice={response.data[0]}
           onEdit={handleEdit}

@@ -54,13 +54,7 @@ const invoiceTypeSchema = {
           description: 'Is paid',
         },
       },
-      required: [
-        'invoice_number',
-        'issue_date',
-        'due_date',
-        'due_amount',
-        'is_paid',
-      ],
+      required: [],
     },
   },
 }
