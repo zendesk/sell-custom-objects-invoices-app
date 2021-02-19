@@ -64,6 +64,9 @@ const NewForm = ({
     [attributes],
   )
 
+  const isButtonDisabled = () =>
+    attributes.invoiceNumber.length === 0 || attributes.dueAmount.length === 0
+
   return (
     <Grid className={css.Form}>
       <Row justifyContent="center">
@@ -117,6 +120,7 @@ const NewForm = ({
             data-test-id="invoice-create"
             onClick={handleSubmit}
             isPrimary
+            disabled={isButtonDisabled()}
           >
             Create
           </Button>

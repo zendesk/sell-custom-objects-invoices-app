@@ -66,6 +66,9 @@ const EditForm = ({
     [attributes],
   )
 
+  const isButtonDisabled = () =>
+    attributes.invoiceNumber.length === 0 || attributes.dueAmount.length === 0
+
   return (
     <Grid className={css.Form}>
       <Row justifyContent="center">
@@ -119,6 +122,7 @@ const EditForm = ({
             data-test-id="invoice-update"
             onClick={handleSubmit}
             isPrimary
+            disabled={isButtonDisabled()}
           >
             Update
           </Button>
