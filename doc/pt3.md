@@ -294,7 +294,7 @@ const sunshineResponse = useClientRequest(
     `/api/sunshine/objects/records/zen:deal:${dealId}/related/deal_invoice`,
   )
 ```
-in order to be able to edit its current  attributes. The response is  handled by `<ResponseHandler>` like before and passed to `<EditForm>` along with `onSubmittedForm` prop.
+The response is  handled by `<ResponseHandler>` like before and passed to `<EditForm>` along with `onSubmittedForm` prop.
  
 Similary to `Create` function `handleSubmittedForm` gets invoice attributes passed from the form and performs an action - `updaeInvoice` implemented within `SunshineProvider.ts` .
 
