@@ -214,7 +214,7 @@ export const createInvoice = (
   })
 }
 ```
-This method makes a POST request to [Create Object record API](https://developer.zendesk.com/rest_api/docs/sunshine/resources#create-object-record) and creates a new record of `Invoice`. A `client` performing the request is an instance of  [ZAF Client](https://developer.zendesk.com/apps/docs/core-api/client_api#zaf-client-api) initialised in `<App>` component. 
+This method makes a POST request to [Create Object Record API](https://developer.zendesk.com/rest_api/docs/sunshine/resources#create-object-record) and creates a new record of `Invoice`. A `client` performing the request is an instance of  [ZAF Client](https://developer.zendesk.com/apps/docs/core-api/client_api#zaf-client-api) initialised in `<App>` component. 
 As a response we get `Invoice` record and we can use it's `id` to create a relation between Deal na `Invoice`.
 
 
