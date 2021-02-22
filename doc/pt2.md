@@ -199,7 +199,7 @@ Relation type:
   updated_at: '2021-02-16T14:21:14.000Z'    
 }    
     
-Setup is ready. Please follow the next steps of tutorial.    
+Setup is ready. Please follow the next steps of the tutorial.    
 ```    
 Now your schema is all set. You can review created Object Type and relation in **Admin Center** > **Sunshine** > **Objects** / **Relationships** and we can proceed to running the app locally.    
     
