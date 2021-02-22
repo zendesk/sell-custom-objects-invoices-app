@@ -131,7 +131,7 @@ When response in not empty `Invoice` record is passed to a **Details.js** compon
 <h3 id="create-objects">2. Create Object & Relation via Sunshine API</h3>
 
 In this section we will talk about the situation when above's response is empty, so there is no `Invoice` yet and we would like to add new record. 
-**EmptyState.tsx** component responsible for handling this scenario simply display a button to add new `Invoie` and navigates to **NewView.tsx** throughout  `/new` path. 
+**EmptyState.tsx** component responsible for handling this scenario simply displays a button to add new `Invoice` and navigates to **NewView.tsx** via  `/new` path. 
 
 ```js
 const EmptyState = () => {
