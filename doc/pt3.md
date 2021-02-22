@@ -21,7 +21,7 @@ This tutorial is the third part of a series on building a Zendesk app:
 <h3 id="getting-data">1. Getting data from Sunshine API</h3>
 
 You probably noticed that our application is a simple CRUD. In this section we will focus on Reading data using [Sunshine Custom Objects API](https://developer.zendesk.com/rest_api/docs/sunshine/custom_objects_api).
-Open our main component `<App >` (**src/index.tsx**) and look at `return` method.
+Open our main component `<App >` (**src/index.tsx**) and take a look at `return` method.
 ```js
 return (
 	...   
