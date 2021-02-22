@@ -171,7 +171,7 @@ You can use **Admin Center** to manually create [Objects Types](https://develope
 At the top of the file provide necessary details:    
 * SUBDOMAIN    
 * E-MAIL    
-* ACCESS_TOKEN - API tokens are managed in the Support admin interface at **Admin** > **Channels** > **API**.  Add new API token if need and place it in the script (remember to not expose your token publicly)    
+* ACCESS_TOKEN - API tokens are managed in the Support admin interface at **Admin** > **Channels** > **API**.  Add a new API token if necessary and paste it in the script (remember to not expose your token publicly)    
     
 In our project root directory run:    
 `$ node custom_objects_schema_setup.js` As a result you should see:    
