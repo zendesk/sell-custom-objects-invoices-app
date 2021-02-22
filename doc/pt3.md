@@ -2,7 +2,7 @@
 ## Building your first Sell Custom Objects app in React- Part 3: Implementation details
 
 In previous tutorials of this series, you learned how to to setup Custom Objects schema on your account and run the showcase application locally. We hope you found some time to play with the application as well.
-Now, when you get a grasp of how an example application maid on the top of Sunshine Custom Objects API may work, lest dive into details and see how it is implemented under the hood.
+Now, once you have a grasp of how an example application made on the top of Sunshine Custom Objects API may work, let's dive into details and see how it is implemented under the hood.
 This part of the tutorial covers the following tasks: 
 
     
