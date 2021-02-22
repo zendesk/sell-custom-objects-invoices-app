@@ -68,7 +68,7 @@ This tutorial is the second part of a series on building a Zendesk app:
       
  Your Zendesk app will live in an iframe on the `deal_card` location that we specified in the previous section. Like any iframe app, developing a Zendesk app consists of combining static and dynamic elements in the HTML file to be displayed in the iframe.      
       
-Open the **index.html** file in your favourite code editor.      
+Open the **index.html** file in your favourite code editor. This is what you'll see:      
       
 ```html      
 <!DOCTYPE html>      
