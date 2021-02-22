@@ -68,7 +68,7 @@ export const EntryView = () => {
 The first request sits in the [useClientGet](https://github.com/zendesk/sell-zaf-app-toolbox#useclientgetpath) hook. It uses `client.get()` under the hood to get a Deal based on a current location. Simply put it will call `client.get('deal.id')` for our location.  
   
   
-[useClientHeigh](https://github.com/zendesk/sell-zaf-app-toolbox#useclientheightheight) is another hook which is pretty useful when you need to manage an app height. It accepts a height value and calls `client.invoke(‘resize’ , {height})` underneath.  
+[useClientHeight](https://github.com/zendesk/sell-zaf-app-toolbox#useclientheightheight) is another hook which is pretty useful when you need to manage an app height. It accepts a height value and calls `client.invoke(‘resize’ , {height})` underneath.  
   
 `<ResponseHandler/>` component is responsible for handling asynchronous requests. Depending on a request status it can display a loader, an error state or an empty state. When the request has been finished successfully a child component with the response data is being rendered.  
 
