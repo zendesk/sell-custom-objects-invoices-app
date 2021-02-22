@@ -288,7 +288,7 @@ const EditView = ({dealId}: {dealId: string}) => {
   )
 }
 ```
-At first we pull existing `Invoice` record from  [Related Object Records API](https://developer.zendesk.com/rest_api/docs/sunshine/resources#list-related-object-records)
+At first we pull an existing `Invoice` record from  [Related Object Records API](https://developer.zendesk.com/rest_api/docs/sunshine/resources#list-related-object-records) in order to be able to edit its current  attributes:
 ```js
 const sunshineResponse = useClientRequest(
     `/api/sunshine/objects/records/zen:deal:${dealId}/related/deal_invoice`,
