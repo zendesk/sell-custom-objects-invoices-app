@@ -215,6 +215,7 @@ Install dependencies if necessary:
     
 `$ npm run server` 
 Please refer to the next section to actually see your app running in the browser.
+Please refer to the next section to actually see your app running in the browser.
   Optionally: In your browser's Address bar, click the shield icon on the right (Chrome) or lock icon on the left (Firefox) and agree to load an unsafe script (Chrome) or to disable protection (Firefox).    
     
 Note: Safari has no option to disable protection.    
