@@ -166,7 +166,7 @@ Now, when you're familiar with the main concept of the application, let’s run 
     
     
     
-You can use **Admin Center** to manually create [Objects Types](https://developer.zendesk.com/rest_api/docs/sunshine/resource_types) and [Relationships](https://developer.zendesk.com/rest_api/docs/sunshine/relationship_types), but in our case to make sure there won't be any mistakes let's run the script that will automatically create the schema for you. The script is available  in main directory - `custom_objects_schema_setup.js`    
+You can use **Admin Center** to manually create [Objects Types](https://developer.zendesk.com/rest_api/docs/sunshine/resource_types) and [Relationships](https://developer.zendesk.com/rest_api/docs/sunshine/relationship_types), but for the sake of speed and accuracy, let's run the script that will automatically create the schema for you. The script is available  in project's main directory - `custom_objects_schema_setup.js`    
  Open `custom_objects_schema_setup.js` file in your editor    
 At the top of the file provide necessary details:    
 * SUBDOMAIN    
