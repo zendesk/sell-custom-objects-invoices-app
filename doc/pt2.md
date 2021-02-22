@@ -154,7 +154,7 @@ As you can see, all components are wrapped in `<ThemeProvider>` delivered by [@z
 </ThemeProvider>    
 ```      
       
-You don't have to use Zendesk Garden in your future projects. The choice is yours. For example, you could import the popular [Bootstrap CSS](http://getbootstrap.com/css/). For this tutorial, you'll stick with the Zendesk Garden styles.     
+You don't have to use Zendesk Garden in your future projects. The choice is yours. For example, you could import the popular [Bootstrap CSS](http://getbootstrap.com/css/). In this tutorial, we'll stick with the Zendesk Garden styles.     
     
 For the purpose of this Tutorial we have also used an external common library to manage navigation between application views. See more details here: https://reactrouter.com/      
       
