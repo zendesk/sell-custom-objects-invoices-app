@@ -68,7 +68,8 @@ $ cd sell-custom-objects-app-tutorial
  In your terminal run the following command to install all necessary packages:    
     
 ```    
-$ npm install    
+$ npm install
+$ npm install node-fetch
 ```    
     
 <h3 id="installing-zcli">6. Installing the Zendesk CLI</h3>    
