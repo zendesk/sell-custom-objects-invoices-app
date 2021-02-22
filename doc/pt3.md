@@ -1,7 +1,7 @@
 
 ## Building your first Sell Custom Objects app in React- Part 3: Implementation details
 
-In the previous part of tutorial from this series, you managed to setup Custom Objects schema on your account and run the showcase application locally. We hope you found some time to play with the application as well.
+In previous tutorials of this series, you learned how to to setup Custom Objects schema on your account and run the showcase application locally. We hope you found some time to play with the application as well.
 Now, when you get a grasp of how an example application maid on the top of Sunshine Custom Objects API may work, lest dive into details and see how it is implemented under the hood.
 This part of the tutorial covers the following tasks: 
 
@@ -409,4 +409,3 @@ Like before a `client` performing the request is an instance of  [ZAF Client](ht
 In this part of tutorial we have guided you throughout the implementation of the showcase  application and explained how to perform  basic  CRUD actions on [Custom  Objects API](https://developer.zendesk.com/rest_api/docs/sunshine/custom_objects_api) from within Sell App framework  app.
 
 In the last Part 4 of the tutorial we will show you how to install the app as private and prepare production build.
-
