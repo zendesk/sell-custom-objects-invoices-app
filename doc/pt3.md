@@ -184,7 +184,7 @@ const NewView = () => {
 
 This component renders `<NewForm>` and provides it with `dealId` and a `onSubmittedForm` prop that is invoked once form is submitted.
 
-Function `handleSubmittedForm`  gets invoice attributes passed from the form and performs two actions - `createInvoice` and `createRelation`  implemented within `SunshineProvider.ts` .
+Function `handleSubmittedForm`  gets invoice attributes passed from the form and performs two actions - `createInvoice` and `createRelation`  implemented within `SunshineProvider.ts`.
 
 **`createInvoice`**
 
