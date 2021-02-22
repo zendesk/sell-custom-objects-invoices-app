@@ -241,7 +241,7 @@ export const createRelation = (
   })
 }
 ```
-This method runs just after we get the response from `createInvoice` and as a param requires `dealId` and `invoiceId` . As an outcome it makes a POST request to [Create Relationship record API](https://developer.zendesk.com/rest_api/docs/sunshine/relationships#create-relationship-record) and creates a new record of linking `Invoice` and Deal. A `client` performing the request (passed as a param) is also an instance of  [ZAF Client](https://developer.zendesk.com/apps/docs/core-api/client_api#zaf-client-api) initialised in `<App>` component. 
+This method runs just after we get the response from `createInvoice` and as a param requires `dealId` and `invoiceId`. As an outcome it makes a POST request to [Create Relationship Record API](https://developer.zendesk.com/rest_api/docs/sunshine/relationships#create-relationship-record) and creates a new record of linking `Invoice` and Deal. A `client` performing the request (passed as a param) is also an instance of  [ZAF Client](https://developer.zendesk.com/apps/docs/core-api/client_api#zaf-client-api) initialised in `<App>` component. 
 
 
 In the end we navigate back to `EntryView` using `history.push('/')` available by using [React Router](https://reactrouter.com/). At this point it will load our newly created `Invoice` as described in [Getting data from Sunshine API](#getting-data)  
