@@ -1,6 +1,6 @@
   
 ## Building your first React Sell Custom Objects app - Part 1: Laying the groundwork    
- In this tutorial series, we will walk you throughout a simple Zendesk Sell Custom Objects showcase application.  
+ In this tutorial series, we will walk you through a simple Zendesk Sell Custom Objects showcase application.  
 The app will use [Sunshine Custom Objects API](https://developer.zendesk.com/rest_api/docs/sunshine/custom_objects_api) in order to interact with Custom Objects resources management.  
 This part of tutorial covers the following steps:    
     
