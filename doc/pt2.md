@@ -173,7 +173,7 @@ At the top of the file provide necessary details:
 * E-MAIL    
 * ACCESS_TOKEN - API tokens are managed in the Support admin interface at **Admin** > **Channels** > **API**.  Add a new API token if necessary and paste it in the script (remember to not expose your token publicly)    
     
-In our project root directory run:    
+From our project root directory run:    
 `$ node custom_objects_schema_setup.js` As a result you should see:    
 ```    
 Object type:    
