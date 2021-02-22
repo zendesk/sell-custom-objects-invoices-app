@@ -331,7 +331,7 @@ Based on `invoiceId` provided in params this method makes a `PATCH` request to [
 
 <h3 id="delete-objects">4. Delete Objects & Relations via Sunshine API</h3>
 
-Last action available to perform in our showcase application is a detach of the `Invoice`  record from given Deal. It can be performed from `<Details>` view and by clicking Button that navigates  to `/delete`  path handled by `<DeleteView>` component.
+The last action available in our showcase application is a detach of the `Invoice`  record from given Deal. It can be performed from `<Details>` view and by clicking Button that navigates  to `/delete`  path handled by `<DeleteView>` component.
 
 ```js
 const DeleteView = ({dealId}: {dealId: string}) => {
