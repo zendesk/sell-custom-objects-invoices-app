@@ -11,7 +11,7 @@ This part of the tutorial covers the following tasks:
 3. [Edit Objects via Sunshine API](#edit-objects)    
 4. [Delete Objects & Relations via Sunshine API](#delete-objects)    
     
-This tutorial is the second part of a series on building a Zendesk app:    
+This tutorial is the third part of a series on building a Zendesk app:    
     
 - [Part 1: Laying the groundwork](https://develop.zendesk.com/hc/en-us/articles/...)    
 - [Part 2: Running showcase app locally]()  
