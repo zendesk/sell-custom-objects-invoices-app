@@ -3,6 +3,7 @@ import {Datepicker} from '@zendeskgarden/react-datepickers'
 import {Field, Label, Input, Checkbox} from '@zendeskgarden/react-forms'
 import {Row, Col, Grid} from '@zendeskgarden/react-grid'
 import {Button} from '@zendeskgarden/react-buttons'
+import {Inline} from '@zendeskgarden/react-loaders'
 import {useCallback, useState} from 'react'
 import {Link} from 'react-router-dom'
 
@@ -32,10 +33,12 @@ const NewForm = ({
     isPaid: false,
   })
 
-  const handleSubmit = useCallback(
-    () => onSubmittedForm({...attributes, dealId}),
-    [attributes],
-  )
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = useCallback(() => {
+    setSubmitted(true)
+    onSubmittedForm({...attributes, dealId})
+  }, [attributes])
 
   const handleInvoiceNumber = useCallback(
     (event: {target: {value: string}}) =>
@@ -113,16 +116,19 @@ const NewForm = ({
       </Row>
       <Row>
         <Col textAlign="end">
-          <Link to="/">
-            <Button data-test-id="invoice-create-cancel">Cancel</Button>
+          <Link to="/" className={css.submitButtonsSpacing}>
+            <Button data-test-id="invoice-create-cancel" size="small">
+              Cancel
+            </Button>
           </Link>
           <Button
             data-test-id="invoice-create"
-            onClick={handleSubmit}
+            size="small"
             isPrimary
+            onClick={handleSubmit}
             disabled={isButtonDisabled()}
           >
-            Create
+            {submitted ? <Inline size={28} /> : 'Create'}
           </Button>
         </Col>
       </Row>

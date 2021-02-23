@@ -28,7 +28,10 @@ const DetailsDropdown = ({
   return (
     <Dropdown onSelect={handleSelect}>
       <Trigger>
-        <OverflowButton data-test-id="invoice-actions" aria-label="Row actions" />
+        <OverflowButton
+          data-test-id="invoice-actions"
+          aria-label="Row actions"
+        />
       </Trigger>
       <Menu
         placement="bottom-end"

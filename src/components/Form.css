@@ -5,3 +5,7 @@
   padding-top: var(--zd-spacing-xs);
   padding-bottom: var(--zd-spacing-xs);
 }
+
+.submitButtonsSpacing {
+  margin: var(--zd-spacing-sm)
+}
