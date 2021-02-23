@@ -74,7 +74,7 @@ const NewForm = ({
     <Grid className={css.Form}>
       <Row justifyContent="center">
         <Col sm={5}>
-          <Field>
+          <Field className="u-mt-xs">
             <Label>Invoice number</Label>
             <Input
               data-test-id="invoice-number"
@@ -82,19 +82,19 @@ const NewForm = ({
               onChange={handleInvoiceNumber}
             />
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Label>Issue date</Label>
             <Datepicker value={attributes.issueDate} onChange={handleIssueDate}>
               <Input data-test-id="invoice-issue-date" />
             </Datepicker>
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Label>Due date</Label>
             <Datepicker value={attributes.dueDate} onChange={handleDueDate}>
               <Input data-test-id="invoice-due-date" />
             </Datepicker>
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Label>Due amount</Label>
             <Input
               data-test-id="invoice-due-amount"
@@ -103,7 +103,7 @@ const NewForm = ({
               onChange={handleDueAmount}
             />
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Checkbox
               data-test-id="invoice-is-paid"
               checked={attributes.isPaid}
