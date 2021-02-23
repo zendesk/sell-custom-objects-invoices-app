@@ -2,36 +2,51 @@ import * as React from 'react'
 import {Col, Grid, Row} from '@zendeskgarden/react-grid'
 import {LG} from '@zendeskgarden/react-typography'
 import {Button} from '@zendeskgarden/react-buttons'
+import {PALETTE} from '@zendeskgarden/react-theming'
+import {Inline} from '@zendeskgarden/react-loaders'
+import {Link} from 'react-router-dom'
+import {useState} from 'react'
 
 import {RelationshipData} from '../providers/sunshineProvider'
 import css from './DeleteSection.css'
 
 const DeleteSection = ({
   relation,
-  onCancel,
   onDelete,
 }: {
   relation: RelationshipData
-  onCancel: () => void
   onDelete: (relationId: string, invoiceId: string) => void
 }) => {
-  const handleDelete = () => onDelete(relation.id, relation.target)
+  const [submitted, setSubmitted] = useState(false)
+  const handleDelete = () => {
+    setSubmitted(true)
+    onDelete(relation.id, relation.target)
+  }
 
   return (
     <Grid className={css.DeleteSection}>
+      <Row
+        justifyContent="center"
+        alignItems="center"
+        className={css.deleteHeader}
+      >
+        <LG>Do you want to remove an Invoice?</LG>
+      </Row>
       <Row justifyContent="center" alignItems="center">
         <Col textAlign="center">
-          <LG>Do you want to remove Invoice?</LG>
-          <Button data-test-id="invoice-delete-cancel" onClick={onCancel}>
-            Cancel
-          </Button>
+          <Link to="/" className={css.cancelDeleteSpacing}>
+            <Button size="small" data-test-id="invoice-delete-cancel">
+              Cancel
+            </Button>
+          </Link>
           <Button
+            size="small"
             isDanger
             isPrimary
             data-test-id="invoice-delete-confirm"
             onClick={handleDelete}
           >
-            Delete
+            {submitted ? <Inline size={28} color={PALETTE.white} /> : 'Delete'}
           </Button>
         </Col>
       </Row>

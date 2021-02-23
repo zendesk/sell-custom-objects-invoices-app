@@ -28,7 +28,6 @@ const DeleteView = ({dealId}: {dealId: string}) => {
     `/api/sunshine/relationships/records?type=${RELATION_TYPE}`,
   )
 
-  const handleCancel = useCallback(() => history.push('/'), [])
   const handleDelete = useCallback(
     async (relationId: string, invoiceId: string) => {
       await deleteRelation(client, relationId)
@@ -59,7 +58,6 @@ const DeleteView = ({dealId}: {dealId: string}) => {
             ) as RelationshipData
           }
           onDelete={handleDelete}
-          onCancel={handleCancel}
         />
       )}
     </ResponseHandler>
