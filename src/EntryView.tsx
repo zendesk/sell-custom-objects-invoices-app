@@ -11,7 +11,7 @@ import DetailsView from './components/DetailsView'
 import css from './App.css'
 
 export const EntryView = () => {
-  useClientHeight(250)
+  useClientHeight(215)
   const dealIdResponse = useClientGet('deal.id')
 
   return (

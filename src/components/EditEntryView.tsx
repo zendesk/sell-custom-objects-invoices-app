@@ -11,7 +11,7 @@ import EditView from './EditView'
 import css from '../App.css'
 
 export const EditEntryView = () => {
-  useClientHeight(250)
+  useClientHeight(390)
   const dealIdResponse = useClientGet('deal.id')
 
   return (

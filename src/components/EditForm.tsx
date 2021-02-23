@@ -6,6 +6,9 @@ import {Button} from '@zendeskgarden/react-buttons'
 import {useCallback, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {InvoiceData} from 'src/providers/sunshineProvider'
+import {Inline} from '@zendeskgarden/react-loaders'
+
+import css from './Form.css'
 
 export interface EditFormAttributes {
   dealId: number
@@ -24,6 +27,7 @@ const EditForm = ({
   onSubmittedForm: (invoiceId: string, attributes: EditFormAttributes) => void
 }) => {
   const invoiceAttributes = invoice.attributes
+  const [submitted, setSubmitted] = useState(false)
   const [attributes, setAttributes] = useState({
     invoiceNumber: invoiceAttributes.invoice_number,
     issueDate: new Date(invoiceAttributes.issue_date),
@@ -32,10 +36,10 @@ const EditForm = ({
     isPaid: invoiceAttributes.is_paid,
   })
 
-  const handleSubmit = useCallback(
-    () => onSubmittedForm(invoice.id, {...attributes} as EditFormAttributes),
-    [attributes],
-  )
+  const handleSubmit = useCallback(() => {
+    setSubmitted(true)
+    onSubmittedForm(invoice.id, {...attributes} as EditFormAttributes)
+  }, [attributes])
 
   const handleInvoiceNumber = useCallback(
     (event: {target: {value: string}}) =>
@@ -64,11 +68,14 @@ const EditForm = ({
     [attributes],
   )
 
+  const isButtonDisabled = () =>
+    attributes.invoiceNumber.length === 0 || attributes.dueAmount.length === 0
+
   return (
-    <Grid>
+    <Grid className={css.Form}>
       <Row justifyContent="center">
         <Col sm={5}>
-          <Field>
+          <Field className="u-mt-xs">
             <Label>Invoice number</Label>
             <Input
               data-test-id="invoice-number"
@@ -76,19 +83,19 @@ const EditForm = ({
               onChange={handleInvoiceNumber}
             />
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Label>Issue date</Label>
             <Datepicker value={attributes.issueDate} onChange={handleIssueDate}>
               <Input data-test-id="invoice-issue-date" />
             </Datepicker>
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Label>Due date</Label>
             <Datepicker value={attributes.dueDate} onChange={handleDueDate}>
               <Input data-test-id="invoice-due-date" />
             </Datepicker>
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Label>Due amount</Label>
             <Input
               data-test-id="invoice-due-amount"
@@ -97,7 +104,7 @@ const EditForm = ({
               onChange={handleDueAmount}
             />
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Checkbox
               data-test-id="invoice-is-paid"
               checked={attributes.isPaid}
@@ -109,14 +116,22 @@ const EditForm = ({
         </Col>
       </Row>
       <Row>
-        <Link to="/">
-          <Button data-test-id="invoice-update-cancel" isDanger>
-            Cancel
+        <Col textAlign="end">
+          <Link to="/" className={css.submitButtonsSpacing}>
+            <Button data-test-id="invoice-update-cancel" size="small">
+              Cancel
+            </Button>
+          </Link>
+          <Button
+            size="small"
+            data-test-id="invoice-update"
+            onClick={handleSubmit}
+            isPrimary
+            disabled={isButtonDisabled()}
+          >
+            {submitted ? <Inline size={28} /> : 'Update'}
           </Button>
-        </Link>
-        <Button data-test-id="invoice-update" onClick={handleSubmit}>
-          Update
-        </Button>
+        </Col>
       </Row>
     </Grid>
   )

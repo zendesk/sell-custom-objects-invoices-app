@@ -3,8 +3,11 @@ import {Datepicker} from '@zendeskgarden/react-datepickers'
 import {Field, Label, Input, Checkbox} from '@zendeskgarden/react-forms'
 import {Row, Col, Grid} from '@zendeskgarden/react-grid'
 import {Button} from '@zendeskgarden/react-buttons'
+import {Inline} from '@zendeskgarden/react-loaders'
 import {useCallback, useState} from 'react'
 import {Link} from 'react-router-dom'
+
+import css from './Form.css'
 
 export interface NewFormAttributes {
   dealId: number
@@ -30,10 +33,12 @@ const NewForm = ({
     isPaid: false,
   })
 
-  const handleSubmit = useCallback(
-    () => onSubmittedForm({...attributes, dealId}),
-    [attributes],
-  )
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = useCallback(() => {
+    setSubmitted(true)
+    onSubmittedForm({...attributes, dealId})
+  }, [attributes])
 
   const handleInvoiceNumber = useCallback(
     (event: {target: {value: string}}) =>
@@ -62,11 +67,14 @@ const NewForm = ({
     [attributes],
   )
 
+  const isButtonDisabled = () =>
+    attributes.invoiceNumber.length === 0 || attributes.dueAmount.length === 0
+
   return (
-    <Grid>
+    <Grid className={css.Form}>
       <Row justifyContent="center">
         <Col sm={5}>
-          <Field>
+          <Field className="u-mt-xs">
             <Label>Invoice number</Label>
             <Input
               data-test-id="invoice-number"
@@ -74,19 +82,19 @@ const NewForm = ({
               onChange={handleInvoiceNumber}
             />
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Label>Issue date</Label>
             <Datepicker value={attributes.issueDate} onChange={handleIssueDate}>
               <Input data-test-id="invoice-issue-date" />
             </Datepicker>
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Label>Due date</Label>
             <Datepicker value={attributes.dueDate} onChange={handleDueDate}>
               <Input data-test-id="invoice-due-date" />
             </Datepicker>
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Label>Due amount</Label>
             <Input
               data-test-id="invoice-due-amount"
@@ -95,7 +103,7 @@ const NewForm = ({
               onChange={handleDueAmount}
             />
           </Field>
-          <Field>
+          <Field className="u-mt-sm">
             <Checkbox
               data-test-id="invoice-is-paid"
               checked={attributes.isPaid}
@@ -107,14 +115,22 @@ const NewForm = ({
         </Col>
       </Row>
       <Row>
-        <Link to="/">
-          <Button data-test-id="invoice-create-cancel" isDanger>
-            Cancel
+        <Col textAlign="end">
+          <Link to="/" className={css.submitButtonsSpacing}>
+            <Button data-test-id="invoice-create-cancel" size="small">
+              Cancel
+            </Button>
+          </Link>
+          <Button
+            data-test-id="invoice-create"
+            size="small"
+            isPrimary
+            onClick={handleSubmit}
+            disabled={isButtonDisabled()}
+          >
+            {submitted ? <Inline size={28} /> : 'Create'}
           </Button>
-        </Link>
-        <Button data-test-id="invoice-create" onClick={handleSubmit}>
-          Create
-        </Button>
+        </Col>
       </Row>
     </Grid>
   )
