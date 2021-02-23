@@ -6,6 +6,7 @@ import {Button} from '@zendeskgarden/react-buttons'
 import {useCallback, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {InvoiceData} from 'src/providers/sunshineProvider'
+import {Inline} from '@zendeskgarden/react-loaders'
 
 import css from './Form.css'
 
@@ -26,6 +27,7 @@ const EditForm = ({
   onSubmittedForm: (invoiceId: string, attributes: EditFormAttributes) => void
 }) => {
   const invoiceAttributes = invoice.attributes
+  const [submitted, setSubmitted] = useState(false)
   const [attributes, setAttributes] = useState({
     invoiceNumber: invoiceAttributes.invoice_number,
     issueDate: new Date(invoiceAttributes.issue_date),
@@ -34,10 +36,10 @@ const EditForm = ({
     isPaid: invoiceAttributes.is_paid,
   })
 
-  const handleSubmit = useCallback(
-    () => onSubmittedForm(invoice.id, {...attributes} as EditFormAttributes),
-    [attributes],
-  )
+  const handleSubmit = useCallback(() => {
+    setSubmitted(true)
+    onSubmittedForm(invoice.id, {...attributes} as EditFormAttributes)
+  }, [attributes])
 
   const handleInvoiceNumber = useCallback(
     (event: {target: {value: string}}) =>
@@ -115,16 +117,19 @@ const EditForm = ({
       </Row>
       <Row>
         <Col textAlign="end">
-          <Link to="/">
-            <Button data-test-id="invoice-update-cancel">Cancel</Button>
+          <Link to="/" className={css.submitButtonsSpacing}>
+            <Button data-test-id="invoice-update-cancel" size="small">
+              Cancel
+            </Button>
           </Link>
           <Button
+            size="small"
             data-test-id="invoice-update"
             onClick={handleSubmit}
             isPrimary
             disabled={isButtonDisabled()}
           >
-            Update
+            {submitted ? <Inline size={28} /> : 'Update'}
           </Button>
         </Col>
       </Row>

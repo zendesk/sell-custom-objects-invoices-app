@@ -30,7 +30,7 @@ const DeleteSection = ({
         alignItems="center"
         className={css.deleteHeader}
       >
-        <LG>Do you want to remove an Invoice?</LG>
+        <LG>Do you want to remove the Invoice?</LG>
       </Row>
       <Row justifyContent="center" alignItems="center">
         <Col textAlign="center">
