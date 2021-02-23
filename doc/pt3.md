@@ -1,26 +1,27 @@
 
 ## Building your first Sell Custom Objects app in React- Part 3: Implementation details
 
-In previous tutorials of this series, you learned how to to setup Custom Objects schema on your account and run the showcase application locally. We hope you found some time to play with the application as well.
-Now, once you have a grasp of how an example application made on the top of Sunshine Custom Objects API may work, let's dive into details and see how it is implemented under the hood.
+In previous tutorials of this series, you learned how to set up Custom Objects schema on your account and run the showcase application locally. We hope you found some time to play with the application as well.
+Now that you have a grasp of how an example application made on top of Sunshine Custom Objects API may work, let's dive into details and see how it's implemented under the hood.
 This part of the tutorial covers the following tasks: 
 
     
 1. [Getting data from Sunshine API](#getting-data)    
-2. [Create Objects & Relations via Sunshine API ](#create-objects)    
-3. [Edit Objects via Sunshine API](#edit-objects)    
-4. [Delete Objects & Relations via Sunshine API](#delete-objects)    
+2. [Creating Objects & Relations via Sunshine API ](#create-objects)    
+3. [Editing Objects via Sunshine API](#edit-objects)    
+4. [Deleting Objects & Relations via Sunshine API](#delete-objects)    
     
 This tutorial is the third part of a series on building a Zendesk app:    
     
 - [Part 1: Laying the groundwork](https://develop.zendesk.com/hc/en-us/articles/...)    
 - [Part 2: Running showcase app locally]()  
-- Part 3: Implementation details - YOU ARE HERE  
+- Part 3: Implementation details - YOU ARE HERE
+- [Part 4: Installing the app in Sell ](...)    
 
     
 <h3 id="getting-data">1. Getting data from Sunshine API</h3>
 
-You probably noticed that our application is a simple CRUD. In this section we will focus on Reading data using [Sunshine Custom Objects API](https://developer.zendesk.com/rest_api/docs/sunshine/custom_objects_api).
+You probably noticed that our application is a simple CRUD. In this section we will focus on reading data using [Sunshine Custom Objects API](https://developer.zendesk.com/rest_api/docs/sunshine/custom_objects_api).
 Open our main component `<App >` (**src/index.tsx**) and take a look at `return` method.
 ```js
 return (
@@ -40,7 +41,7 @@ Within the `Router` section you can see that `EntryView` is rendered as our defa
 
 This is a simple component which makes HTTP request and then displays the data. 
 
-***The convention within this tutorial assumes that `XyzView.tsx` components are responsible for gathering the data and performing actions (HTTP requests)***
+***The convention within this tutorial assumes that `XyzView.tsx` components are responsible for gathering the data and performing actions (HTTP requests)***.
 
   
 ```js  
@@ -68,11 +69,11 @@ export const EntryView = () => {
 The first request sits in the [useClientGet](https://github.com/zendesk/sell-zaf-app-toolbox#useclientgetpath) hook. It uses `client.get()` under the hood to get a Deal based on a current location. Simply put it will call `client.get('deal.id')` for our location.  
   
   
-[useClientHeight](https://github.com/zendesk/sell-zaf-app-toolbox#useclientheightheight) is another hook which is pretty useful when you need to manage an app height. It accepts a height value and calls `client.invoke(‘resize’ , {height})` underneath.  
+[useClientHeight](https://github.com/zendesk/sell-zaf-app-toolbox#useclientheightheight) is another hook that is useful when you need to manage an app's height. It accepts a height value and calls `client.invoke(‘resize’ , {height})` underneath.  
   
-`<ResponseHandler/>` component is responsible for handling asynchronous requests. Depending on a request status it can display a loader, an error state or an empty state. When the request has been finished successfully a child component with the response data is being rendered.  
+`<ResponseHandler/>` component is responsible for handling asynchronous requests. Depending on a request status it can display a loader, an error state or an empty state. When the request has finished successfully, a child component with the response data will be rendered.  
 
-At this point we already got `deal.id` and we can pass it to `DetailsView` component. Open **src/components/DetailsViews.tsx**.
+At this point we already have `deal.id` and we can pass it to `DetailsView` component. Open **src/components/DetailsViews.tsx**:
 
 ```js
 const DetailsView = ({dealId}: {dealId: string}) => {
@@ -106,9 +107,9 @@ const DetailsView = ({dealId}: {dealId: string}) => {
   )
 }
 ```
-This component is also responsible for gathering data based on provided `dealId` prop - it calls Sunshine API to find related record of  Custom Object  type `Invoice` for given `dealId`.
+This component is also responsible for gathering data based on provided `dealId` prop: it calls Sunshine API to find related record of  Custom Object  type `Invoice` for given `dealId`.
 
-It uses [useClientRequest](https://github.com/zendesk/sell-zaf-app-toolbox#useclientrequesturl-options-dependencies-cachekey) hook to perform a `GET` request on [Related Object Records API](https://developer.zendesk.com/rest_api/docs/sunshine/resources#list-related-object-records). As you probably remember we defined our 1:1 Relationship type as:
+It uses [useClientRequest](https://github.com/zendesk/sell-zaf-app-toolbox#useclientrequesturl-options-dependencies-cachekey) hook to perform a `GET` request on [Related Object Records API](https://developer.zendesk.com/rest_api/docs/sunshine/resources#list-related-object-records). As you might remember we defined our 1:1 Relationship type as:
 ```
 {
   key: 'deal_invoice',
@@ -120,10 +121,9 @@ It uses [useClientRequest](https://github.com/zendesk/sell-zaf-app-toolbox#usecl
 An example request to fetch related `Invoice` for our Deal will look like this:
 
 `https://..../api/sunshine/objects/records/zen:deal:21730067/related/deal_invoice`
+, where `21730067` is a `dealId` of a Deal from our current location, provided as a prop and `deal_invoice` is a `relationship_type_key` that we are looking for.
 
-Where `21730067` is a `dealId` of a Deal from our current location, provided as a prop and `deal_invoice` is a `relationship_type_key` that we are looking for.
-
-In this case `<ResponseHandler/>` also covers asynchronous requests. Moreover it allows to provide a method  `isEmpty`  as a prop to check whether the response is empty or not. In case it's empty (no `Invoice` records created yet) component provided as`emptyView` prop will be rendered. In our case it is `<EmptyState />`.
+In this case `<ResponseHandler/>` also covers asynchronous requests. Moreover, it allows us to provide a method  `isEmpty`  as a prop to check whether the response is empty or not. In case it's empty (no `Invoice` records created yet) the component provided as`emptyView` prop will be rendered. In our case it is `<EmptyState />`.
 
 When response in not empty `Invoice` record is passed to a **Details.js** component responsible for rendering its attributes.
 
@@ -131,7 +131,7 @@ When response in not empty `Invoice` record is passed to a **Details.js** compon
 <h3 id="create-objects">2. Create Object & Relation via Sunshine API</h3>
 
 In this section we will talk about the situation when above's response is empty, so there is no `Invoice` yet and we would like to add new record. 
-**EmptyState.tsx** component responsible for handling this scenario simply displays a button to add new `Invoice` and navigates to **NewView.tsx** via  `/new` path. 
+**EmptyState.tsx** component responsible for handling this scenario displays a button to add a new `Invoice` and navigates to **NewView.tsx** via  `/new` path. 
 
 ```js
 const EmptyState = () => {
@@ -147,7 +147,7 @@ const EmptyState = () => {
 
 We use standard `Garden UI` components such as `Button` which you can find here: https://garden.zendesk.com/components/button
 
-Like mentioned above adding new `Invoice` record is handled by **NewView.tsx**. 
+As mentioned above, adding a new `Invoice` record is handled by **NewView.tsx**. 
 ```js
 const NewView = () => {
   useClientHeight(400)
@@ -184,7 +184,7 @@ const NewView = () => {
 
 This component renders `<NewForm>` and provides it with `dealId` and a `onSubmittedForm` prop that is invoked once form is submitted.
 
-Function `handleSubmittedForm`  gets invoice attributes passed from the form and performs two actions - `createInvoice` and `createRelation`  implemented within `SunshineProvider.ts`.
+Function `handleSubmittedForm`  gets Invoice attributes passed from the form and performs two actions: `createInvoice` and `createRelation`  implemented within `SunshineProvider.ts`.
 
 **`createInvoice`**
 
@@ -244,11 +244,11 @@ export const createRelation = (
 This method runs just after we get the response from `createInvoice` and as a param requires `dealId` and `invoiceId`. As an outcome it makes a POST request to [Create Relationship Record API](https://developer.zendesk.com/rest_api/docs/sunshine/relationships#create-relationship-record) and creates a new record of linking `Invoice` and Deal. A `client` performing the request (passed as a param) is also an instance of  [ZAF Client](https://developer.zendesk.com/apps/docs/core-api/client_api#zaf-client-api) initialised in `<App>` component. 
 
 
-In the end we navigate back to `EntryView` using `history.push('/')` available by using [React Router](https://reactrouter.com/). At this point it will load our newly created `Invoice` as described in [Getting data from Sunshine API](#getting-data)  
+In the end we navigate back to `EntryView` using `history.push('/')` available by using [React Router](https://reactrouter.com/). At this point it will load our newly created `Invoice` as described in [Getting data from Sunshine API](#getting-data).  
 
 <h3 id="edit-objects">3. Edit Objects via Sunshine API</h3>
 
-In this section  we will show how to edit Custom Object records using Sunshine API. It happens when you navigated  to `/edit`  form `<Details>`. This action is handled by `<EditView>`.
+In this section  we will show how to edit Custom Object records using Sunshine API. It happens when you navigate  to `/edit`  from `<Details>`. This action is handled by `<EditView>`.
 
 ```js
 const EditView = ({dealId}: {dealId: string}) => {
@@ -296,7 +296,7 @@ const sunshineResponse = useClientRequest(
 ```
 The response is  handled by `<ResponseHandler>` like before and passed to `<EditForm>` along with `onSubmittedForm` prop.
  
-Similary to `Create` function `handleSubmittedForm` gets invoice attributes passed from the form and performs an action - `updaeInvoice` implemented within `SunshineProvider.ts` .
+Similarly to `Create` function `handleSubmittedForm` gets invoice attributes passed from the form and performs an action - `updateInvoice` implemented within `SunshineProvider.ts` .
 
 **updateInvoice**
 
@@ -327,11 +327,12 @@ export const updateInvoice = (
 }
 ```
 Based on `invoiceId` provided in params this method makes a `PATCH` request to [Update Object  Record API](https://developer.zendesk.com/rest_api/docs/sunshine/resources#update-object-record). 
-*Note `contentType: 'application/merge-patch+json'`
+
+Note `contentType: 'application/merge-patch+json'`.
 
 <h3 id="delete-objects">4. Delete Objects & Relations via Sunshine API</h3>
 
-The last action available in our showcase application is a detach of the `Invoice`  record from given Deal. It can be performed from `<Details>` view and by clicking Button that navigates  to `/delete`  path handled by `<DeleteView>` component.
+The last action available in our showcase application is detaching of the `Invoice`  record from a given `Deal`. It can be performed from `<Details>` view by clicking the Button that navigates  to `/delete`  path handled by `<DeleteView>` component.
 
 ```js
 const DeleteView = ({dealId}: {dealId: string}) => {
@@ -378,8 +379,8 @@ const DeleteView = ({dealId}: {dealId: string}) => {
 }
 ```
 
-It works similar to `create` action - once `handleDelete` method is being invoked two actions - `deleteRelation` and `deleteInvoice`  implemented within `SunshineProvider.ts` are performed.
-Sunshine API requires given order of those requests as we at first have to detach the relation and then we can remove Custom Object record.
+It works similar to `create` action: once `handleDelete` method is being invoked, two actions, `deleteRelation` and `deleteInvoice`, implemented within `SunshineProvider.ts` are performed.
+Sunshine API requires this order of those requests as we at first have to detach the relation and then we can remove Custom Object record.
 
 **deleteRelation** & **deleteInvoice**
 ```js
@@ -401,11 +402,11 @@ export const deleteObject = (client: Client | undefined, objectId: string) => {
 }
 ```
 
-Both actions make `DELETE` request to APIs  - [Delete Object record](https://developer.zendesk.com/rest_api/docs/sunshine/resources#delete-object-record)  & [Delete  Relation record](https://developer.zendesk.com/rest_api/docs/sunshine/relationships#delete-relationship-record) and requires `id` of given object.
-Like before a `client` performing the request is an instance of  [ZAF Client](https://developer.zendesk.com/apps/docs/core-api/client_api#zaf-client-api) initialised in `<App>` component and passed as argument.
+Both actions make `DELETE` requests to APIs, [Delete Object record](https://developer.zendesk.com/rest_api/docs/sunshine/resources#delete-object-record)  & [Delete  Relation record](https://developer.zendesk.com/rest_api/docs/sunshine/relationships#delete-relationship-record), and require `id` of given object.
+As before, a `client` performing the request is an instance of  [ZAF Client](https://developer.zendesk.com/apps/docs/core-api/client_api#zaf-client-api) initialised in `<App>` component and passed as an argument.
 
 
 ### Summary
-In this part of tutorial we have guided you throughout the implementation of the showcase  application and explained how to perform  basic  CRUD actions on [Custom  Objects API](https://developer.zendesk.com/rest_api/docs/sunshine/custom_objects_api) from within Sell App framework  app.
+In this part of the tutorial we have guided you through the implementation of the showcase  application and explained how to perform basic  CRUD actions on [Custom  Objects API](https://developer.zendesk.com/rest_api/docs/sunshine/custom_objects_api) from within Sell App framework  app.
 
-In the last Part 4 of the tutorial we will show you how to install the app as private and prepare production build.
+In Part 4 of the tutorial we will show you how to install the app as private and prepare a production build.
