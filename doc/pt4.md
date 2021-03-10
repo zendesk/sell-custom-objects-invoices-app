@@ -1,12 +1,12 @@
 ## Building your first Sell Custom Objects app in React- Part 4: Installing the app in Sell
 
-In the previous parts of this tutorial you learned how to run the application locally and walked throughout the implementation of basic CRUD actions. In this part we will show you how to build and install the app directly on you Sell account via App Framework.
+In the previous parts of this tutorial you learned how to run the application locally and walked through the implementation of basic CRUD actions. In this part we will show you how to build and install the app directly on you Sell account via App Framework.
       
 1. [Production build](#production-build)      
 2. [Installing the app](#installing-app)      
 3. [Next steps](#next-steps) 
       
-This tutorial is the second part of a series on building a Zendesk app:      
+This tutorial is the fourth part of a series on building a Zendesk app:      
       
 - [Part 1: Laying the groundwork](https://develop.zendesk.com/hc/en-us/articles/...)      
 - [Part 2: Running showcase app locally](...)

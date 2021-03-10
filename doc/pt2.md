@@ -244,4 +244,4 @@ At this point the tutorial app should be there.
       
 <img src="https://zen-marketing-documentation.s3.amazonaws.com/docs/en/app_on_person_card.png" alt="Add a contact person to Sell" width="600"/>     
     
-***You can now play with the showcase app and try to Create/ Edit / Remove an Invoice!***
+***You can now play with the showcase app and try to Create/ Edit / Remove an Invoice***

@@ -1,7 +1,7 @@
 
 ## Building your first Sell Custom Objects app in React- Part 3: Implementation details
 
-In previous tutorials of this series, you learned how to set up Custom Objects schema on your account and run the showcase application locally. We hope you found some time to play with the application as well.
+In previous tutorials of this series, you learned how to set up Custom Objects schema on your account and run the showcase application locally.
 Now that you have a grasp of how an example application made on top of Sunshine Custom Objects API may work, let's dive into details and see how it's implemented under the hood.
 This part of the tutorial covers the following tasks: 
 
@@ -39,9 +39,9 @@ return (
 ```
 Within the `Router` section you can see that `EntryView` is rendered as our default path. Let's see the details of this component. Open **src/EntryView.tsx** in your favourite editor.
 
-This is a simple component which makes HTTP request and then displays the data. 
+This is a simple component which makes an HTTP request and then displays the data. 
 
-***The convention within this tutorial assumes that `XyzView.tsx` components are responsible for gathering the data and performing actions (HTTP requests)***.
+***The convention within this tutorial is that `XyzView.tsx` components are responsible for gathering the data and performing actions (HTTP requests)***.
 
   
 ```js  
@@ -409,4 +409,4 @@ As before, a `client` performing the request is an instance of  [ZAF Client](htt
 ### Summary
 In this part of the tutorial we have guided you through the implementation of the showcase  application and explained how to perform basic  CRUD actions on [Custom  Objects API](https://developer.zendesk.com/rest_api/docs/sunshine/custom_objects_api) from within Sell App framework  app.
 
-In Part 4 of the tutorial we will show you how to install the app as private and prepare a production build.
+In Part 4 of the tutorial we will show you how to install the app as a private app in Sell and prepare a production build.

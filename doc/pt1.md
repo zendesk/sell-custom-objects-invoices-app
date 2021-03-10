@@ -19,9 +19,7 @@ The other tutorials in the series teach you how to build and install the app:
 - [Part 4: Installing the app in Sell](...) 
     
 Because the tutorials build upon each other, it's recommended you tackle them in order and finish each tutorial before moving on to the next one.    
-    
-To download the completed source code of the app in this tutorial, click [sell-custom-objects-app-tutorial.zip](). You can review the code as you follow along or check your work.    
-    
+        
 **Note**: Zendesk provides this article for instructional purposes only. Zendesk does not provide support for the content. Please post any issue in the comments section below or in the [Zendesk Apps community](https://develop.zendesk.com/hc/en-us/community/topics/...), or search for a solution online.    
     
 <h3 id="product-requirements">1. Product requirements</h3>    
@@ -50,10 +48,11 @@ The app assumes 1:1 relationship between Sell Deal object and Custom Object reco
 2. <b>Edit</b> an Invoice attached to the Deal    
 3. <b>Delete</b> an Invoice and detach it from the Deal    
     
-When a user opens a Deal, the app will automatically make a HTTP GET request to the Sunshine Custom Objects API to fetch the Invoice related to it. If such record exists, it will be shown in the app and edit/delete actions will be performable on it. If an Invoice related to the Deal doesn't exist, a button to create a new Invoice will be shown.    
+When a user opens a Deal, the app will automatically make an HTTP GET request to the Sunshine Custom Objects API to fetch the Invoice related to it. If such a record exists, it will be shown in the app and edit/delete actions will be performable on it. If an Invoice related to the Deal doesn't exist, a button to create a new Invoice will be shown.    
     
 <h3 id="using-the-showcase-template">3. Using the showcase template</h3>    
- Clone the [showcase repository](https://github.com/zendesk/sell-custom-objects-app-tutorial) to your local machine and open the project.    
+ Clone the [showcase repository](https://github.com/zendesk/sell-custom-objects-app-tutorial) to your local machine and open the project.
+ Please note that this is a React app.    
     
 ```    
 $ git clone git@github.com:zendesk/sell-custom-objects-app-tutorial.git    
@@ -89,8 +88,8 @@ Installing the tools is a one-time task. Once installed, you can use ZCLI for al
 Read the [ZCLI apps section](https://github.com/zendesk/zcli/blob/master/docs/apps.md) to get familiar with the tool, but don’t run `$ zcli apps:new` command since the template we’re using includes all starter files necessary to build the app. Inside the app project, ZCLI commands are available as **npm scripts** which you can run in your terminal. They can be found in the **package.json** file under `'script'` property. For example, if you want to build your app you will simply run `$ npm run build` which will execute properly parametrized `$ zcli apps:validate` and `$ zcli apps:package` under the hood. We’ll be using those commands in the next sections.    
     
 <h3 id="app-files-overview">7. Showcase app overview</h3>    
- Open the showcase app in your favorite editor and go to the `dist/` folder. The folder contains all [required files](https://developer.zendesk.com/apps/docs/developer-guide/setup#file-requirements) which have to be included in an app to install it successfully in a Zendesk product. Directory `src/` is a place where the source code lives. You can add as many files as you need while you're building your app, but for now there is all you need to start off.    
+ Open the showcase app in your favorite editor and go to the `dist/` folder. The folder contains all [required files](https://developer.zendesk.com/apps/docs/developer-guide/setup#file-requirements) which have to be included in an app to install it successfully in a Zendesk product. Directory `src/` is a place where the source code lives. You can add as many files as you need while you're building your app, but for now it includes everything you need to start off.    
     
-In the next part of tutorial, you'll test if it works at this stage and you will get to know how to develop the app locally.
+In the next part of tutorial, you'll test if the showcase app works as expected and you will learn how to develop the app locally.
 
 Get started: [Part 2: Running showcase app locally](https://develop.zendesk.com/hc/en-us/articles/...).
