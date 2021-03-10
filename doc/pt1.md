@@ -76,7 +76,8 @@ $ npm install
 $ npm install node-fetch
 ```    
     
-<h3 id="installing-zcli">6. Installing the Zendesk CLI</h3>    
+<h3 id="installing-zcli">6. Installing the Zendesk CLI</h3>
+    
  In this section, you'll install the [Zendesk CLI](https://github.com/zendesk/zcli) (also known as ZCLI). Among other tasks, the tools let you perform the following tasks:    
     
 - Automatically create all the necessary files and folders for a new app    
@@ -88,7 +89,8 @@ Installing the tools is a one-time task. Once installed, you can use ZCLI for al
     
 Read the [ZCLI apps section](https://github.com/zendesk/zcli/blob/master/docs/apps.md) to get familiar with the tool, but don’t run `$ zcli apps:new` command since the template we’re using includes all starter files necessary to build the app. Inside the app project, ZCLI commands are available as **npm scripts** which you can run in your terminal. They can be found in the **package.json** file under `'script'` property. For example, if you want to build your app you will simply run `$ npm run build` which will execute properly parametrized `$ zcli apps:validate` and `$ zcli apps:package` under the hood. We’ll be using those commands in the next sections.    
     
-<h3 id="app-files-overview">7. Showcase app overview</h3>    
+<h3 id="app-files-overview">7. Showcase app overview</h3>  
+  
  Open the showcase app in your favorite editor and go to the `dist/` folder. The folder contains all [required files](https://developer.zendesk.com/apps/docs/developer-guide/setup#file-requirements) which have to be included in an app to install it successfully in a Zendesk product. Directory `src/` is a place where the source code lives. You can add as many files as you need while you're building your app, but for now it includes everything you need to start off.    
     
 In the next part of tutorial, you'll test if the showcase app works as expected and you will learn how to develop the app locally.
