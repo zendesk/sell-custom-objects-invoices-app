@@ -50,7 +50,8 @@ The app assumes 1:1 relationship between Sell Deal object and Custom Object reco
     
 When a user opens a Deal, the app will automatically make an HTTP GET request to the Sunshine Custom Objects API to fetch the Invoice related to it. If such a record exists, it will be shown in the app and edit/delete actions will be performable on it. If an Invoice related to the Deal doesn't exist, a button to create a new Invoice will be shown.    
     
-<h3 id="using-the-showcase-template">3. Using the showcase template</h3>    
+<h3 id="using-the-showcase-template">3. Using the showcase template</h3>
+    
  Clone the [showcase repository](https://github.com/zendesk/sell-custom-objects-app-tutorial) to your local machine and open the project.
  Please note that this is a React app.    
     
