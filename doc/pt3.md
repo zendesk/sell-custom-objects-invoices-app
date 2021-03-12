@@ -46,7 +46,7 @@ This is a simple component which makes an HTTP request and then displays the dat
   
 ```js  
 export const EntryView = () => {
-  useClientHeight(250)
+  useClientHeight(215)
   const dealIdResponse = useClientGet('deal.id')
 
   return (
@@ -85,7 +85,7 @@ const DetailsView = ({dealId}: {dealId: string}) => {
   const handleEdit = useCallback(() => history.push('/edit'), [])
   const handleDelete = useCallback(() => history.push('/delete'), [])
 
-  const isRelationEmpty = (response: {data: InvoiceResponse}) =>
+  const isInvoiceListEmpty = (response: {data: InvoiceListResponse}) =>
     response.data.data.length === 0
 
   return (
@@ -94,9 +94,9 @@ const DetailsView = ({dealId}: {dealId: string}) => {
       loadingView={<Loader />}
       errorView={<div>Something went wrong!</div>}
       emptyView={<EmptyState />}
-      isEmpty={isRelationEmpty}
+      isEmpty={isInvoiceListEmpty}
     >
-      {([response]: [InvoiceResponse]) => (
+      {([response]: [InvoiceListResponse]) => (
         <Details
           invoice={response.data[0]}
           onEdit={handleEdit}
@@ -252,7 +252,6 @@ In this section  we will show how to edit Custom Object records using Sunshine A
 
 ```js
 const EditView = ({dealId}: {dealId: string}) => {
-  useClientHeight(400)
   const history = useHistory()
   const client = useContext(ZAFClientContext)
 
@@ -336,13 +335,13 @@ The last action available in our showcase application is detaching of the `Invoi
 
 ```js
 const DeleteView = ({dealId}: {dealId: string}) => {
+  const dealRelationName = `zen:deal:${dealId}`
   const client = useContext(ZAFClientContext)
   const history = useHistory()
   const sunshineResponse = useClientRequest(
     `/api/sunshine/relationships/records?type=${RELATION_TYPE}`,
   )
 
-  const handleCancel = useCallback(() => history.push('/'), [])
   const handleDelete = useCallback(
     async (relationId: string, invoiceId: string) => {
       await deleteRelation(client, relationId)
@@ -351,8 +350,10 @@ const DeleteView = ({dealId}: {dealId: string}) => {
     },
     [],
   )
-  const isRelationEmpty = (response: RelationshipListResponse) =>
-    response.data.length === 0
+  const isRelationEmpty = (response: {data: RelationshipListResponse}) =>
+    response.data.data.filter(
+      (relation: RelationshipData) => relation.source === dealRelationName,
+    ).length === 0
 
   return (
     <ResponseHandler
@@ -367,11 +368,10 @@ const DeleteView = ({dealId}: {dealId: string}) => {
           relation={
             response.data.find(
               (relation: RelationshipData) =>
-                relation.source === `zen:deal:${dealId}`,
+                relation.source === dealRelationName,
             ) as RelationshipData
           }
           onDelete={handleDelete}
-          onCancel={handleCancel}
         />
       )}
     </ResponseHandler>
