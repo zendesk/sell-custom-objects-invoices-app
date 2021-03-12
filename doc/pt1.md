@@ -95,4 +95,3 @@ Read the [ZCLI apps section](https://github.com/zendesk/zcli/blob/master/docs/ap
     
 In the next part of tutorial, you'll test if the showcase app works as expected and you will learn how to develop the app locally.
 
-Get started: [Part 2: Running showcase app locally](https://develop.zendesk.com/hc/en-us/articles/...).
