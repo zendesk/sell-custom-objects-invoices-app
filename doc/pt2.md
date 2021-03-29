@@ -120,7 +120,7 @@ The [React Context](https://reactjs.org/docs/context.html) is used to make the `
       
 `<ZAFClientContextProvider>` is a part of [@zendesk/sell-zaf-app-toolbox](https://github.com/zendesk/sell-zaf-app-toolbox) package which consists of many useful methods, hooks, and components that help you build and integrated React apps with Zendesk Sell quicker and with less effort.      
       
-For this app,  [Zendesk Garden](https://garden.zendesk.com/) as the UI framework. Zendesk Garden is designed to be a common baseline of styles and components between all Zendesk products. For example, it provides[customizable React components](https://garden.zendesk.com/components) such as spinners and buttons which can be included in the project. Use the Zendesk Garden assets if you would like your app to match the look and feel of other Zendesk products.      
+For this app,  [Zendesk Garden](https://garden.zendesk.com/) as the UI framework. Zendesk Garden is designed to be a common baseline of styles and components between all Zendesk products. For example, it provides [customizable React components](https://garden.zendesk.com/components) such as spinners and buttons which can be included in the project. Use the Zendesk Garden assets if you would like your app to match the look and feel of other Zendesk products.      
       
 All components are wrapped in `<ThemeProvider>` delivered by [@zendeskgarden/react-theming](https://github.com/zendeskgarden/react-components/tree/main/packages/theming) package to provide a default global theme for nested components.      
       
