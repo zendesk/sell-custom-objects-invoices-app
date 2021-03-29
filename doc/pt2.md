@@ -148,7 +148,7 @@ You can create [Object Types](https://developer.zendesk.com/rest_api/docs/sunshi
 
 1. Open the **custom_objects_schema_setup.js** file in your text editor. 
 2. Provide details for the following properties:    
-   * `ACCESS_TOKEN` - API tokens are managed in the Support admin interface at **Admin** > **Channels** > **API**. If needed, create a new API token paste it in the script. Be careful to not expose your token publicly.  
+   * `ACCESS_TOKEN` - API tokens are managed in the Support admin interface at **Admin** > **Channels** > **API**. If needed, create a new API token and paste it in the script. Be careful to not expose your token publicly.  
    * `MAIL` - Your account email address
    * `SUBDOMAIN` - Your Zendesk Sell subdomain            
 3. From the project root directory, run `$ node custom_objects_schema_setup.js`.
