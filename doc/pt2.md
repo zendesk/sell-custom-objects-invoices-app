@@ -112,7 +112,7 @@ ReactDOM.render(<App />, document.getElementById('app'))
       
 The `div` element is defined in the **index.html** file between the `<body>` tags.      
       
-The[React Context](https://reactjs.org/docs/context.html) is used to make the `client` accessible to the component tree without having to pass it down manually at every level.      
+The [React Context](https://reactjs.org/docs/context.html) is used to make the `client` accessible to the component tree without having to pass it down manually at every level.      
       
 ```js      
 <ZAFClientContextProvider value={client}>      
