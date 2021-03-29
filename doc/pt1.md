@@ -45,7 +45,7 @@ If you're interested in becoming a Zendesk developer partner, you can convert a 
 
 <h3 id="enabling-custom-objects">Enabling custom objects</h3> 
 
-Custom objects must be enabled by an administrator in Zendesk Support. If you're not an admin, ask one to enable them for you. For more information, see [Enablng custom objects](https://support.zendesk.com/hc/en-us/articles/360037716253-Sunshine-custom-objects-guide-for-admins#topic_fk5_wyl_mjb).  
+Custom objects must be enabled by an administrator in Zendesk Support. If you're not an admin, ask one to enable them for you. For more information, see [Enabling custom objects](https://support.zendesk.com/hc/en-us/articles/360037716253-Sunshine-custom-objects-guide-for-admins#topic_fk5_wyl_mjb).  
 
 
 <h3 id="planning-the-app">Planning the app</h3>    
@@ -101,4 +101,3 @@ Inside your cloned app project, ZCLI commands are available as npm scripts which
     
 In the next tutorial, you'll test if the app works as expected and learn how to develop the app locally. Get started: [Part 2: Running the app locally](https://developer_v2.zendesk.com/documentation/apps/build-an-app/build-your-first-custom-objects-app-for_sell...)
 <!-- TODO Add link when URL on the new site is confirmed-->
-
