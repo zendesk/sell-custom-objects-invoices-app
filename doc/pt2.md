@@ -28,7 +28,7 @@ This tutorial is the second part of a series on building an app for Zendesk Sell
 <img src="https://zen-marketing-documentation.s3.amazonaws.com/docs/developer/3.deal_sidebar.png" alt="Deal card location" width="600"/>          
      
 
-The **manifest.json** file in your app scaffold template folder (**/dist/manifest.json**)is where you set the app location. It is pre-configured to the Deal card location.     
+The **manifest.json** file in your app scaffold template folder (**/dist/manifest.json**) is where you set the app location. It is pre-configured to the Deal card location.     
       
 ```      
 "location": {
